@@ -1,0 +1,57 @@
+export default defineNuxtConfig({
+	modules: ['@vueuse/nuxt', '@nuxt/ui'],
+	app: {
+		head: {
+			title: 'Prebucket',
+			charset: 'utf-8',
+			viewport: 'width=device-width, initial-scale=1',
+			meta: [
+				{ name: 'format-detection', content: 'no' },
+				{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' },
+			],
+		},
+		pageTransition: {
+			name: 'page',
+			mode: 'out-in',
+		},
+		layoutTransition: {
+			name: 'layout',
+			mode: 'out-in',
+		},
+	},
+	css: ['@/assets/css/main.css'],
+	ssr: false,
+	vite: {
+		clearScreen: false,
+		envPrefix: ['VITE_', 'TAURI_'],
+		server: {
+			strictPort: true,
+			hmr: {
+				protocol: 'ws',
+				host: '0.0.0.0',
+				port: 1421,
+			},
+			watch: {
+				ignored: ['**/src-tauri/**'],
+			},
+		},
+	},
+	devServer: {
+		port: '1420',
+	},
+	router: {
+		options: {
+			scrollBehaviorType: 'smooth',
+		},
+	},
+	nitro: {
+		preset: 'static',
+	},
+	devtools: {
+		enabled: false,
+	},
+	experimental: {
+		typedPages: true,
+	},
+	compatibilityDate: '2026-01-01',
+})
