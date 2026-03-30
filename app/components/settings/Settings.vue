@@ -24,7 +24,7 @@ const items = [
 			<SettingsItem :label="$t('settings.items.language')" icon="i-ph-globe-simple">
 				<SettingsLocaleSelect v-model="settings.locale" />
 			</SettingsItem>
-			<SettingsItem :label="$t('settings.items.autoStart')" icon="i-ph-power">
+			<SettingsItem v-if="isTauri" :label="$t('settings.items.autoStart')" icon="i-ph-power">
 				<USwitch v-model="settings.autoStart" />
 			</SettingsItem>
 		</template>

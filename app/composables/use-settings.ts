@@ -1,3 +1,4 @@
+import { disable, enable, isEnabled } from '@tauri-apps/plugin-autostart'
 import type { Settings } from '~/types/settings'
 
 const defaultSettings: Settings = {
@@ -13,7 +14,6 @@ export function useSettings() {
 	async function loadStore() {
 		if (isTauri) {
 			const store = await useTauriStoreLoad('settings.json')
-
 			const stored = await store.get<Settings>('settings')
 			if (stored) Object.assign(settings, stored)
 
@@ -23,6 +23,17 @@ export function useSettings() {
 					await store.set('settings', toRaw(val))
 				},
 				{ deep: true },
+			)
+
+			settings.autoStart = await isEnabled()
+			watch(
+				() => settings.autoStart,
+				async (val) => {
+					try {
+						if (val) await enable()
+						else await disable()
+					} catch {}
+				},
 			)
 		} else {
 			const stored = localStorage.getItem('settings')
