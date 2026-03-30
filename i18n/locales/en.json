@@ -1,0 +1,23 @@
+{
+	"common": {
+		"openAppMenu": "Open Application Menu"
+	},
+	"settings": {
+		"label": "Settings",
+		"tabs": {
+			"general": "General",
+			"appearance": "Appearance",
+			"about": "About"
+		},
+		"items": {
+			"language": "Language",
+			"autoStart": "Launch on Startup",
+			"colorMode": {
+				"label": "Color Theme",
+				"light": "Light",
+				"dark": "Dark",
+				"system": "Follow System"
+			}
+		}
+	}
+}

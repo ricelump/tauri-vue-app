@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import * as locales from '@nuxt/ui/locale'
-
 const props = defineProps<{
 	close?: () => void
 }>()
@@ -9,9 +7,9 @@ const appConfig = useAppConfig()
 const { settings } = useSettings()
 
 const items = [
-	{ label: 'General', icon: 'i-ph-gear-fine', slot: 'general' },
-	{ label: 'Appearance', icon: 'i-ph-palette', slot: 'appearance' },
-	{ label: 'About', icon: 'i-ph-info', slot: 'about' },
+	{ label: $t('settings.tabs.general'), icon: 'i-ph-gear-fine', slot: 'general' },
+	{ label: $t('settings.tabs.appearance'), icon: 'i-ph-palette', slot: 'appearance' },
+	{ label: $t('settings.tabs.about'), icon: 'i-ph-info', slot: 'about' },
 ]
 </script>
 
@@ -23,17 +21,17 @@ const items = [
 		:ui="{ content: 'mt-4 flex flex-col gap-1' }"
 	>
 		<template #general>
-			<SettingsItem label="Language" icon="i-ph-globe-simple">
-				<ULocaleSelect v-model="settings.locale" :locales="Object.values(locales)" class="flex-1" />
+			<SettingsItem :label="$t('settings.items.language')" icon="i-ph-globe-simple">
+				<SettingsLocaleSelect v-model="settings.locale" />
 			</SettingsItem>
-			<SettingsItem label="Auto Start" icon="i-ph-power" description="Todo.">
+			<SettingsItem :label="$t('settings.items.autoStart')" icon="i-ph-power">
 				<USwitch v-model="settings.autoStart" />
 			</SettingsItem>
 		</template>
 
 		<template #appearance>
-			<SettingsItem label="Color Mode" icon="i-ph-circle-half">
-				<UColorModeSelect v-model="settings.colorMode" class="flex-1" />
+			<SettingsItem :label="$t('settings.items.colorMode.label')" icon="i-ph-circle-half">
+				<SettingsColorModeTabs v-model="settings.colorMode" />
 			</SettingsItem>
 		</template>
 

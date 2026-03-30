@@ -1,8 +1,4 @@
-interface Settings {
-	locale: string
-	autoStart: boolean
-	colorMode: 'light' | 'dark' | 'system'
-}
+import type { Settings } from '~/types/settings'
 
 const defaultSettings: Settings = {
 	locale: 'en',

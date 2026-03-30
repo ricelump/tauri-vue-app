@@ -1,0 +1,23 @@
+{
+	"common": {
+		"openAppMenu": "打开应用菜单"
+	},
+	"settings": {
+		"label": "设置",
+		"tabs": {
+			"general": "通用",
+			"appearance": "外观",
+			"about": "关于"
+		},
+		"items": {
+			"language": "语言",
+			"autoStart": "开机自启",
+			"colorMode": {
+				"label": "色彩主题",
+				"light": "浅色模式",
+				"dark": "深色模式",
+				"system": "跟随系统"
+			}
+		}
+	}
+}

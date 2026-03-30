@@ -1,0 +1,23 @@
+{
+	"common": {
+		"openAppMenu": "アプリケーションメニューを開く"
+	},
+	"settings": {
+		"label": "設定",
+		"tabs": {
+			"general": "一般",
+			"appearance": "外観",
+			"about": "情報"
+		},
+		"items": {
+			"language": "言語",
+			"autoStart": "自動起動",
+			"colorMode": {
+				"label": "テーマ",
+				"light": "ライトモード",
+				"dark": "ダークモード",
+				"system": "システムに準拠"
+			}
+		}
+	}
+}

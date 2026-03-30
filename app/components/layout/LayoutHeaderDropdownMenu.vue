@@ -8,7 +8,7 @@ const settingsModal = overlay.create(LazySettingsModal)
 const items = ref<DropdownMenuItem[][]>([
 	[
 		{
-			label: 'Settings',
+			label: $t('settings.label'),
 			icon: 'i-ph-gear-fine',
 			onClick: () => settingsModal.open(),
 		},
@@ -18,7 +18,7 @@ const items = ref<DropdownMenuItem[][]>([
 
 <template>
 	<UDropdownMenu :items="items">
-		<UTooltip text="Open Application Menu">
+		<UTooltip :text="$t('common.openAppMenu')">
 			<UButton icon="i-ph-list" color="neutral" variant="ghost" />
 		</UTooltip>
 	</UDropdownMenu>

@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-	modules: ['@vueuse/nuxt', '@nuxt/ui'],
+	modules: ['@vueuse/nuxt', '@nuxt/ui', '@nuxtjs/i18n'],
 	app: {
 		head: {
 			title: 'Prebucket',
@@ -18,6 +18,42 @@ export default defineNuxtConfig({
 			name: 'layout',
 			mode: 'out-in',
 		},
+	},
+	i18n: {
+ strategy: 'no_prefix',
+		defaultLocale: 'en',
+		locales: [
+			{
+				code: 'en',
+				name: 'English',
+				file: 'en.json',
+			},
+			{
+				code: 'es',
+				name: 'Español',
+				file: 'es.json',
+			},
+			{
+				code: 'fr',
+				name: 'Français',
+				file: 'fr.json',
+			},
+			{
+				code: 'ja',
+				name: '日本語',
+				file: 'ja.json',
+			},
+			{
+				code: 'zh_cn',
+				name: '简体中文',
+				file: 'zh-cn.json',
+			},
+			{
+				code: 'zh_tw',
+				name: '繁體中文',
+				file: 'zh-tw.json',
+			},
+		],
 	},
 	css: ['@/assets/css/main.css'],
 	ssr: false,

@@ -39,6 +39,11 @@ export default defineAppConfig({
 				link: 'cursor-pointer',
 			},
 		},
+		select: {
+			slots: {
+				content: 'min-w-fit h-full',
+			},
+		},
 		icons: {
 			arrowDown: 'i-ph-arrow-down',
 			arrowLeft: 'i-ph-arrow-left',
@@ -55,7 +60,6 @@ export default defineAppConfig({
 			close: 'i-ph-x',
 			copy: 'i-ph-copy',
 			copyCheck: 'i-ph-check-circle',
-			dark: 'i-ph-moon',
 			drag: 'i-ph-dots-six-vertical',
 			ellipsis: 'i-ph-dots-three',
 			error: 'i-ph-x-circle',
@@ -67,7 +71,6 @@ export default defineAppConfig({
 			folderOpen: 'i-ph-folder-open',
 			hash: 'i-ph-hash',
 			info: 'i-ph-info',
-			light: 'i-ph-sun',
 			loading: 'i-ph-circle-notch',
 			menu: 'i-ph-list',
 			minus: 'i-ph-minus',
@@ -78,7 +81,6 @@ export default defineAppConfig({
 			search: 'i-ph-magnifying-glass',
 			stop: 'i-ph-square',
 			success: 'i-ph-check-circle',
-			system: 'i-ph-monitor',
 			tip: 'i-ph-lightbulb',
 			upload: 'i-ph-upload',
 			warning: 'i-ph-warning',
