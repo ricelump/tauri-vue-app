@@ -12,9 +12,13 @@
 	"app": {
 		"windows": [
 			{
-				"title": "prebucket",
+				"label": "main",
+				"title": "Prebucket",
 				"width": 800,
-				"height": 600
+				"height": 600,
+				"minWidth": 600,
+				"minHeight": 480,
+				"decorations": false
 			}
 		],
 		"security": {

@@ -37,7 +37,16 @@ export default defineNuxtConfig({
 		},
 	},
 	devServer: {
-		port: '1420',
+		port: 1420,
+	},
+	dir: {
+		modules: 'app/modules',
+	},
+	icon: {
+		provider: 'local',
+		clientBundle: {
+			scan: true,
+		},
 	},
 	router: {
 		options: {
