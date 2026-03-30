@@ -20,7 +20,7 @@ const tauriModules = [
 	},
 	{ module: tauriOs, prefix: 'Os', importPath: '@tauri-apps/plugin-os' },
 	{ module: tauriStore, prefix: 'Store', importPath: '@tauri-apps/plugin-store' },
-	{ module: tauriAutoStart, prefix: 'Store', importPath: '@tauri-apps/plugin-autostart' },
+	{ module: tauriAutoStart, prefix: 'AutoStart', importPath: '@tauri-apps/plugin-autostart' },
 ]
 
 export default defineNuxtModule({
