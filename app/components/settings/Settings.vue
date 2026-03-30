@@ -6,26 +6,13 @@ const props = defineProps<{
 }>()
 
 const appConfig = useAppConfig()
+const { settings } = useSettings()
 
 const items = [
-	{
-		label: 'General',
-		icon: 'i-ph-gear-fine',
-		slot: 'general',
-	},
-	{
-		label: 'Appearance',
-		icon: 'i-ph-palette',
-		slot: 'appearance',
-	},
-	{
-		label: 'About',
-		icon: 'i-ph-info',
-		slot: 'about',
-	},
+	{ label: 'General', icon: 'i-ph-gear-fine', slot: 'general' },
+	{ label: 'Appearance', icon: 'i-ph-palette', slot: 'appearance' },
+	{ label: 'About', icon: 'i-ph-info', slot: 'about' },
 ]
-
-const locale = ref('en')
 </script>
 
 <template>
@@ -33,20 +20,20 @@ const locale = ref('en')
 		:items="items"
 		color="neutral"
 		variant="link"
-		:ui="{ content: 'mt-4 flex flex-col gap-4' }"
+		:ui="{ content: 'mt-4 flex flex-col gap-1' }"
 	>
 		<template #general>
 			<SettingsItem label="Language" icon="i-ph-globe-simple">
-				<ULocaleSelect v-model="locale" :locales="Object.values(locales)" class="flex-1" />
+				<ULocaleSelect v-model="settings.locale" :locales="Object.values(locales)" class="flex-1" />
 			</SettingsItem>
 			<SettingsItem label="Auto Start" icon="i-ph-power" description="Todo.">
-				<USwitch />
+				<USwitch v-model="settings.autoStart" />
 			</SettingsItem>
 		</template>
 
 		<template #appearance>
 			<SettingsItem label="Color Mode" icon="i-ph-circle-half">
-				<UColorModeSelect class="flex-1" />
+				<UColorModeSelect v-model="settings.colorMode" class="flex-1" />
 			</SettingsItem>
 		</template>
 
