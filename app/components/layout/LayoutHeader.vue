@@ -32,10 +32,11 @@ async function handleWindowDrag(event: MouseEvent) {
 
 <template>
 	<div
-		class="fixed top-0 right-0 left-0 z-50 flex h-12 items-center justify-between pl-4 select-none"
+		class="fixed top-0 right-0 left-0 z-50 flex h-12 items-center justify-between pl-2 select-none"
 		@mousedown="handleWindowDrag"
 	>
-		<section class="flex h-full items-center">
+		<section class="flex h-full items-center gap-2">
+			<LayoutHeaderDropdownMenu />
 			<p class="text-sm">{{ appConfig.app.name }}</p>
 		</section>
 
