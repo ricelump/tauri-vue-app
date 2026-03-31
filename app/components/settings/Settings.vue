@@ -41,6 +41,9 @@ const items = [
 			<SettingsItem :label="$t('settings.items.colorMode.label')" icon="i-ph-circle-half-duotone">
 				<SettingsColorModeTabs v-model="settings.colorMode" />
 			</SettingsItem>
+			<SettingsItem :label="$t('settings.items.accentColor.label')" icon="i-ph-swatches-duotone">
+				<SettingsAccentColorSelect v-model="settings.accentColor" />
+			</SettingsItem>
 		</template>
 
 		<template #about>

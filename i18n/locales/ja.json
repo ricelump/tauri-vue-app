@@ -22,6 +22,15 @@
 				"light": "ライト",
 				"dark": "ダーク",
 				"system": "システム設定に従う"
+			},
+			"accentColor": {
+				"label": "強調色",
+				"blue": "青",
+				"teal": "青緑",
+				"green": "緑",
+				"yellow": "黄",
+				"red": "赤",
+				"neutral": "無彩色"
 			}
 		}
 	},

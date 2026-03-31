@@ -22,6 +22,15 @@
 				"light": "Mode clair",
 				"dark": "Mode sombre",
 				"system": "Suivre le système"
+			},
+			"accentColor": {
+				"label": "Couleur d'accent",
+				"blue": "Bleu",
+				"teal": "Sarcelle",
+				"green": "Vert",
+				"yellow": "Jaune",
+				"red": "Rouge",
+				"neutral": "Neutre"
 			}
 		}
 	},

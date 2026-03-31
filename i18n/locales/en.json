@@ -22,6 +22,15 @@
 				"light": "Light",
 				"dark": "Dark",
 				"system": "Follow System"
+			},
+			"accentColor": {
+				"label": "Accent Color",
+				"blue": "Blue",
+				"teal": "Teal",
+				"green": "Green",
+				"yellow": "Yellow",
+				"red": "Red",
+				"neutral": "Neutral"
 			}
 		}
 	},

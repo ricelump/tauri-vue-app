@@ -22,6 +22,15 @@
 				"light": "Modo claro",
 				"dark": "Modo oscuro",
 				"system": "Seguir al sistema"
+			},
+			"accentColor": {
+				"label": "Color de acento",
+				"blue": "Azul",
+				"teal": "Verde azulado",
+				"green": "Verde",
+				"yellow": "Amarillo",
+				"red": "Rojo",
+				"neutral": "Neutro"
 			}
 		}
 	},

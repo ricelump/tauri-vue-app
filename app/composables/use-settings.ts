@@ -5,6 +5,7 @@ const defaultSettings: Settings = {
 	locale: 'en',
 	autoStart: false,
 	colorMode: 'system',
+	accentColor: 'blue',
 	closeToHide: false,
 }
 
@@ -12,7 +13,7 @@ const settings = reactive<Settings>({ ...defaultSettings })
 const loaded = ref(false)
 let initializing = false
 
-async function initSettings() {
+export async function initSettings() {
 	if (initializing || loaded.value) return
 	initializing = true
 
@@ -56,9 +57,7 @@ async function initSettings() {
 }
 
 export function useSettings() {
-	if (!loaded.value && !initializing) {
-		initSettings()
-	}
+	if (!loaded.value && !initializing) initSettings()
 
 	function $reset() {
 		Object.assign(settings, defaultSettings)
@@ -69,16 +68,4 @@ export function useSettings() {
 		loaded: readonly(loaded),
 		$reset,
 	}
-}
-
-export async function initAppSettings() {
-	await initSettings()
-
-	if (!isTauri) return
-
-	const colorMode = useColorMode()
-	const { setLocale } = useI18n()
-
-	if (settings.locale) setLocale(settings.locale)
-	if (settings.colorMode) colorMode.preference = settings.colorMode
 }

@@ -22,6 +22,15 @@
 				"light": "淺色模式",
 				"dark": "深色模式",
 				"system": "跟隨系統"
+			},
+			"accentColor": {
+				"label": "強調色",
+				"blue": "天藍",
+				"teal": "蒼青",
+				"green": "翠綠",
+				"yellow": "金黃",
+				"red": "赤紅",
+				"neutral": "純灰"
 			}
 		}
 	},
