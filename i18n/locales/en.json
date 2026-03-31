@@ -12,6 +12,7 @@
 		"items": {
 			"language": "Language",
 			"autoStart": "Launch on Startup",
+			"github": "Open in GitHub",
 			"closeToHide": {
 				"label": "Close to Hide",
 				"description": "Keep app running in background when closing window"

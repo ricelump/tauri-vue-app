@@ -12,6 +12,7 @@
 		"items": {
 			"language": "语言",
 			"autoStart": "开机自启",
+			"github": "在 GitHub 上浏览源代码",
 			"closeToHide": {
 				"label": "关闭时隐藏",
 				"description": "关闭窗口时保持应用在后台运行"

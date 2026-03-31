@@ -12,6 +12,7 @@
 		"items": {
 			"language": "Langue",
 			"autoStart": "Démarrage automatique",
+			"github": "Parcourir sur GitHub",
 			"closeToHide": {
 				"label": "Fermer pour Masquer",
 				"description": "Garder l'application en arrière-plan lors de la fermeture de la fenêtre"

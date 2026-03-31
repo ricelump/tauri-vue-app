@@ -12,6 +12,7 @@
 		"items": {
 			"language": "Idioma",
 			"autoStart": "Iniciar con el sistema",
+			"github": "Explora en GitHub",
 			"closeToHide": {
 				"label": "Cerrar para Ocultar",
 				"description": "Mantener la aplicación en segundo plano al cerrar la ventana"

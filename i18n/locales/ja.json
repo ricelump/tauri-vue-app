@@ -12,6 +12,7 @@
 		"items": {
 			"language": "言語",
 			"autoStart": "起動時に自動実行",
+			"github": "GitHub でソースコードを閲覧する",
 			"closeToHide": {
 				"label": "閉じて非表示",
 				"description": "ウィンドウを閉じてもアプリをバックグラウンドで実行"

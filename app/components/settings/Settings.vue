@@ -3,7 +3,6 @@ const props = defineProps<{
 	close?: () => void
 }>()
 
-const appConfig = useAppConfig()
 const { settings } = useSettings()
 
 const items = [
@@ -45,12 +44,7 @@ const items = [
 		</template>
 
 		<template #about>
-			<div class="flex flex-col items-center justify-center gap-2">
-				<p class="text-lg">
-					{{ appConfig.app.name }}
-				</p>
-				<span class="text-sm text-muted">© {{ new Date().getFullYear() }}</span>
-			</div>
+			<SettingsAbout />
 		</template>
 
 		<template #list-trailing>

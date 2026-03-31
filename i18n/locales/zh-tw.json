@@ -12,6 +12,7 @@
 		"items": {
 			"language": "語言",
 			"autoStart": "開機自動啟動",
+			"github": "於 GitHub 瀏覽原始碼",
 			"closeToHide": {
 				"label": "關閉時隱藏",
 				"description": "關閉視窗時保持應用程式在背景執行"

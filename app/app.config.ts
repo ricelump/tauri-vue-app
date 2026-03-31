@@ -1,6 +1,7 @@
 export default defineAppConfig({
 	app: {
 		name: 'Prebucket',
+		github: 'https://github.com/ricelump/prebucket',
 	},
 	ui: {
 		colors: {
