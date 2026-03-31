@@ -1,4 +1,4 @@
-import type { Locales, Settings } from '~/types/settings'
+import type { Settings } from '~/types/settings'
 
 const defaultSettings: Settings = {
 	locale: 'en',
@@ -6,12 +6,17 @@ const defaultSettings: Settings = {
 	colorMode: 'system',
 	accentColor: 'blue',
 	closeToHide: false,
+	shortcuts: {
+		toggleWindow: null as string | null,
+	},
 }
 
+const settings = reactive<Settings>({ ...defaultSettings })
+const loaded = ref(false)
+let initializing = false
+
 export function useSettings() {
-	const settings = reactive<Settings>({ ...defaultSettings })
-	const loaded = ref(false)
-	const initializing = ref(false)
+	const { registerShortcut, unregisterShortcut, toggleWindow } = useGlobalShortcut()
 
 	async function loadStore() {
 		if (isTauri) {
@@ -51,40 +56,27 @@ export function useSettings() {
 		}
 	}
 
-	// async function initLocale() {
-	// 	if (!isTauri) return
-
-	// 	const sysLocale = await useTauriOsLocale()
-	// 	const normalized = sysLocale?.toLowerCase().replace('-', '_')
-
-	// 	const supported = ['en', 'es', 'fr', 'ja', 'zh_cn', 'zh_tw'] as Locales[]
-	// 	const matched = supported.find((l) => normalized === l || normalized?.startsWith(l + '_'))
-
-	// 	settings.locale = matched || 'en'
-	// }
-
-	async function initAutoStart() {
+	async function initShortcuts() {
 		if (!isTauri) return
 
-		settings.autoStart = await useTauriAutoStartIsEnabled()
+		if (settings.shortcuts.toggleWindow)
+			await registerShortcut(settings.shortcuts.toggleWindow, toggleWindow)
 
 		watch(
-			() => settings.autoStart,
-			async (val) => {
-				try {
-					if (val) await useTauriAutoStartEnable()
-					else await useTauriAutoStartDisable()
-				} catch {}
+			() => settings.shortcuts.toggleWindow,
+			async (newVal, oldVal) => {
+				if (oldVal) await unregisterShortcut(oldVal)
+				if (newVal) await registerShortcut(newVal, toggleWindow)
 			},
 		)
 	}
 
 	async function init() {
-		if (initializing.value || loaded.value) return
-		initializing.value = true
+		if (initializing || loaded.value) return
+		initializing = true
 
 		await loadStore()
-		await initAutoStart()
+		await initShortcuts()
 
 		loaded.value = true
 	}
@@ -93,12 +85,11 @@ export function useSettings() {
 		Object.assign(settings, defaultSettings)
 	}
 
-	if (!loaded.value && !initializing.value) init()
+	if (!loaded.value && !initializing) init()
 
 	return {
 		settings,
 		loaded: readonly(loaded),
-		init,
 		$reset,
 	}
 }

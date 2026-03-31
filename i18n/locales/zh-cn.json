@@ -4,23 +4,25 @@
 	},
 	"settings": {
 		"label": "设置",
-		"tabs": {
-			"general": "通用",
-			"appearance": "外观",
-			"about": "关于"
-		},
-		"items": {
+		"general": {
+			"label": "通用",
 			"language": "语言",
 			"autoStart": "开机自启",
-			"github": "在 GitHub 上浏览源代码",
 			"closeToHide": {
-				"label": "关闭时隐藏",
-				"description": "关闭窗口时保持应用在后台运行"
+				"label": "关闭时最小化到系统托盘",
+				"description": "关闭窗口后应用继续在后台运行"
 			},
+			"reset": {
+				"label": "重置所有设置",
+				"button": "重置"
+			}
+		},
+		"appearance": {
+			"label": "外观",
 			"colorMode": {
-				"label": "色彩主题",
-				"light": "浅色模式",
-				"dark": "深色模式",
+				"label": "主题",
+				"light": "浅色",
+				"dark": "深色",
 				"system": "跟随系统"
 			},
 			"accentColor": {
@@ -30,8 +32,19 @@
 				"green": "翠绿",
 				"yellow": "金黄",
 				"red": "赤红",
-				"neutral": "纯灰"
+				"neutral": "素灰"
 			}
+		},
+		"shortcuts": {
+			"label": "快捷键",
+			"toggleWindow": "切换窗口显示",
+			"pressKeys": "按下按键组合...",
+			"notSet": "未设置",
+			"unavailable": "暂无可用快捷键"
+		},
+		"about": {
+			"label": "关于",
+			"github": "在 GitHub 上浏览源代码"
 		}
 	},
 	"tray": {

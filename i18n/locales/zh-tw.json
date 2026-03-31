@@ -4,23 +4,25 @@
 	},
 	"settings": {
 		"label": "設定",
-		"tabs": {
-			"general": "一般",
-			"appearance": "外觀",
-			"about": "關於"
-		},
-		"items": {
+		"general": {
+			"label": "一般",
 			"language": "語言",
 			"autoStart": "開機自動啟動",
-			"github": "於 GitHub 瀏覽原始碼",
 			"closeToHide": {
-				"label": "關閉時隱藏",
-				"description": "關閉視窗時保持應用程式在背景執行"
+				"label": "關閉時最小化至系統匣",
+				"description": "關閉視窗後應用程式繼續在背景執行"
 			},
+			"reset": {
+				"label": "重設所有設定",
+				"button": "重設"
+			}
+		},
+		"appearance": {
+			"label": "外觀",
 			"colorMode": {
-				"label": "色調主題",
-				"light": "淺色模式",
-				"dark": "深色模式",
+				"label": "主題",
+				"light": "淺色",
+				"dark": "深色",
 				"system": "跟隨系統"
 			},
 			"accentColor": {
@@ -32,6 +34,17 @@
 				"red": "赤紅",
 				"neutral": "純灰"
 			}
+		},
+		"shortcuts": {
+			"label": "快速鍵",
+			"toggleWindow": "切換視窗顯示",
+			"pressKeys": "按下按鍵組合...",
+			"notSet": "未設定",
+			"unavailable": "暫無可用快速鍵"
+		},
+		"about": {
+			"label": "關於",
+			"github": "在 GitHub 上瀏覽原始碼"
 		}
 	},
 	"tray": {

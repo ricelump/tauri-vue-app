@@ -17,7 +17,7 @@ const appConfig = useAppConfig()
 			</div>
 		</div>
 
-		<SettingsItem :label="$t('settings.items.github')" icon="i-ph-github-logo-duotone">
+		<SettingsItem :label="$t('settings.about.github')" icon="i-ph-github-logo-duotone">
 			<UButton
 				icon="i-ph-arrow-square-out"
 				:to="appConfig.app.github"

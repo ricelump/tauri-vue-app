@@ -4,23 +4,25 @@
 	},
 	"settings": {
 		"label": "Paramètres",
-		"tabs": {
-			"general": "Général",
-			"appearance": "Apparence",
-			"about": "À propos"
-		},
-		"items": {
+		"general": {
+			"label": "Général",
 			"language": "Langue",
 			"autoStart": "Démarrage automatique",
-			"github": "Parcourir sur GitHub",
 			"closeToHide": {
-				"label": "Fermer pour Masquer",
-				"description": "Garder l'application en arrière-plan lors de la fermeture de la fenêtre"
+				"label": "Réduire dans le bac à la fermeture",
+				"description": "Maintenir l'application en arrière-plan lors de la fermeture de la fenêtre"
 			},
+			"reset": {
+				"label": "Réinitialiser tous les paramètres",
+				"button": "Réinitialiser"
+			}
+		},
+		"appearance": {
+			"label": "Apparence",
 			"colorMode": {
 				"label": "Thème",
-				"light": "Mode clair",
-				"dark": "Mode sombre",
+				"light": "Clair",
+				"dark": "Sombre",
 				"system": "Suivre le système"
 			},
 			"accentColor": {
@@ -32,6 +34,16 @@
 				"red": "Rouge",
 				"neutral": "Neutre"
 			}
+		},
+		"shortcuts": {
+			"label": "Raccourcis",
+			"toggleWindow": "Afficher/masquer la fenêtre",
+			"pressKeys": "Appuyez sur les touches...",
+			"unavailable": "Aucun raccourci disponible"
+		},
+		"about": {
+			"label": "À propos",
+			"github": "Parcourir le code source sur GitHub"
 		}
 	},
 	"tray": {

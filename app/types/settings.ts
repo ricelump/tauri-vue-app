@@ -6,4 +6,7 @@ export interface Settings {
 	colorMode: 'light' | 'dark' | 'system'
 	accentColor: string
 	closeToHide: boolean
+	shortcuts: {
+		toggleWindow: string | null
+	}
 }

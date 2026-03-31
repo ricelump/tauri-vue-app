@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { ArrayOrNested, SelectItem } from '@nuxt/ui'
+
 const props = defineProps<{
 	modelValue: string
 }>()
@@ -19,13 +21,29 @@ const model = computed({
 	},
 })
 
-const colors = [
-	{ label: $t('settings.items.accentColor.blue'), value: 'blue', chip: { color: 'info' } },
-	{ label: $t('settings.items.accentColor.teal'), value: 'teal', chip: { color: 'secondary' } },
-	{ label: $t('settings.items.accentColor.green'), value: 'emerald', chip: { color: 'success' } },
-	{ label: $t('settings.items.accentColor.yellow'), value: 'amber', chip: { color: 'warning' } },
-	{ label: $t('settings.items.accentColor.red'), value: 'rose', chip: { color: 'error' } },
-	{ label: $t('settings.items.accentColor.neutral'), value: 'neutral', chip: { color: 'neutral' } },
+const colors: ArrayOrNested<SelectItem> = [
+	{ label: $t('settings.appearance.accentColor.blue'), value: 'blue', chip: { color: 'info' } },
+	{
+		label: $t('settings.appearance.accentColor.teal'),
+		value: 'teal',
+		chip: { color: 'secondary' },
+	},
+	{
+		label: $t('settings.appearance.accentColor.green'),
+		value: 'emerald',
+		chip: { color: 'success' },
+	},
+	{
+		label: $t('settings.appearance.accentColor.yellow'),
+		value: 'amber',
+		chip: { color: 'warning' },
+	},
+	{ label: $t('settings.appearance.accentColor.red'), value: 'rose', chip: { color: 'error' } },
+	{
+		label: $t('settings.appearance.accentColor.neutral'),
+		value: 'neutral',
+		chip: { color: 'neutral' },
+	},
 ]
 </script>
 

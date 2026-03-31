@@ -92,7 +92,7 @@ export default defineNuxtConfig({
 		preset: 'static',
 	},
 	devtools: {
-		enabled: true,
+		enabled: false,
 	},
 	experimental: {
 		typedPages: true,

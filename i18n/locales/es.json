@@ -4,23 +4,25 @@
 	},
 	"settings": {
 		"label": "Configuración",
-		"tabs": {
-			"general": "General",
-			"appearance": "Apariencia",
-			"about": "Acerca de"
-		},
-		"items": {
+		"general": {
+			"label": "General",
 			"language": "Idioma",
 			"autoStart": "Iniciar con el sistema",
-			"github": "Explora en GitHub",
 			"closeToHide": {
-				"label": "Cerrar para Ocultar",
-				"description": "Mantener la aplicación en segundo plano al cerrar la ventana"
+				"label": "Minimizar a la bandeja al cerrar",
+				"description": "Mantener la aplicación ejecutándose en segundo plano al cerrar la ventana"
 			},
+			"reset": {
+				"label": "Restablecer toda la configuración",
+				"button": "Restablecer"
+			}
+		},
+		"appearance": {
+			"label": "Apariencia",
 			"colorMode": {
 				"label": "Tema",
-				"light": "Modo claro",
-				"dark": "Modo oscuro",
+				"light": "Claro",
+				"dark": "Oscuro",
 				"system": "Seguir al sistema"
 			},
 			"accentColor": {
@@ -30,8 +32,19 @@
 				"green": "Verde",
 				"yellow": "Amarillo",
 				"red": "Rojo",
-				"neutral": "Neutro"
+				"neutral": "Neutral"
 			}
+		},
+		"shortcuts": {
+			"label": "Atajos",
+			"toggleWindow": "Alternar visibilidad de la ventana",
+			"pressKeys": "Presiona teclas...",
+			"notSet": "No establecido",
+			"unavailable": "No hay atajos disponibles"
+		},
+		"about": {
+			"label": "Acerca de",
+			"github": "Explorar el código fuente en GitHub"
 		}
 	},
 	"tray": {

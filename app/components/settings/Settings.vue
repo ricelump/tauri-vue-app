@@ -3,12 +3,13 @@ const props = defineProps<{
 	close?: () => void
 }>()
 
-const { settings } = useSettings()
+const { settings, $reset } = useSettings()
 
 const items = [
-	{ label: $t('settings.tabs.general'), icon: 'i-ph-gear-fine-bold', slot: 'general' },
-	{ label: $t('settings.tabs.appearance'), icon: 'i-ph-palette-bold', slot: 'appearance' },
-	{ label: $t('settings.tabs.about'), icon: 'i-ph-info-bold', slot: 'about' },
+	{ label: $t('settings.general.label'), icon: 'i-ph-gear-fine-bold', slot: 'general' },
+	{ label: $t('settings.appearance.label'), icon: 'i-ph-palette-bold', slot: 'appearance' },
+	{ label: $t('settings.shortcuts.label'), icon: 'i-ph-command-bold', slot: 'shortcuts' },
+	{ label: $t('settings.about.label'), icon: 'i-ph-info-bold', slot: 'about' },
 ]
 </script>
 
@@ -20,30 +21,55 @@ const items = [
 		:ui="{ content: 'mt-4 flex flex-col gap-1' }"
 	>
 		<template #general>
-			<SettingsItem :label="$t('settings.items.language')" icon="i-ph-globe-simple-duotone">
+			<SettingsItem :label="$t('settings.general.language')" icon="i-ph-globe-simple-duotone">
 				<SettingsLocaleSelect v-model="settings.locale" />
 			</SettingsItem>
 			<template v-if="isTauri">
-				<SettingsItem :label="$t('settings.items.autoStart')" icon="i-ph-power-duotone">
+				<SettingsItem :label="$t('settings.general.autoStart')" icon="i-ph-power-duotone">
 					<USwitch v-model="settings.autoStart" />
 				</SettingsItem>
 				<SettingsItem
-					:label="$t('settings.items.closeToHide.label')"
+					:label="$t('settings.general.closeToHide.label')"
 					icon="i-ph-x-circle-duotone"
-					:description="$t('settings.items.closeToHide.description')"
+					:description="$t('settings.general.closeToHide.description')"
 				>
 					<USwitch v-model="settings.closeToHide" />
 				</SettingsItem>
 			</template>
+			<SettingsItem :label="$t('settings.general.reset.label')" icon="i-ph-eraser-duotone">
+				<UButton
+					:label="$t('settings.general.reset.button')"
+					color="error"
+					variant="subtle"
+					@click="$reset"
+				/>
+			</SettingsItem>
 		</template>
 
 		<template #appearance>
-			<SettingsItem :label="$t('settings.items.colorMode.label')" icon="i-ph-circle-half-duotone">
+			<SettingsItem
+				:label="$t('settings.appearance.colorMode.label')"
+				icon="i-ph-circle-half-duotone"
+			>
 				<SettingsColorModeTabs v-model="settings.colorMode" />
 			</SettingsItem>
-			<SettingsItem :label="$t('settings.items.accentColor.label')" icon="i-ph-swatches-duotone">
+			<SettingsItem
+				:label="$t('settings.appearance.accentColor.label')"
+				icon="i-ph-swatches-duotone"
+			>
 				<SettingsAccentColorSelect v-model="settings.accentColor" />
 			</SettingsItem>
+		</template>
+
+		<template #shortcuts>
+			<SettingsItem
+				v-if="isTauri"
+				:label="$t('settings.shortcuts.toggleWindow')"
+				icon="i-ph-app-window-duotone"
+			>
+				<SettingsShortcutButton />
+			</SettingsItem>
+			<UEmpty v-else :title="$t('settings.shortcuts.unavailable')" icon="i-ph-command-bold" />
 		</template>
 
 		<template #about>

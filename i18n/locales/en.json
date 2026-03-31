@@ -4,19 +4,21 @@
 	},
 	"settings": {
 		"label": "Settings",
-		"tabs": {
-			"general": "General",
-			"appearance": "Appearance",
-			"about": "About"
-		},
-		"items": {
+		"general": {
+			"label": "General",
 			"language": "Language",
 			"autoStart": "Launch on Startup",
-			"github": "Open in GitHub",
 			"closeToHide": {
-				"label": "Close to Hide",
-				"description": "Keep app running in background when closing window"
+				"label": "Minimize to Tray on Close",
+				"description": "Keep the app running in the background when the window is closed"
 			},
+			"reset": {
+				"label": "Reset All Settings",
+				"button": "Reset"
+			}
+		},
+		"appearance": {
+			"label": "Appearance",
 			"colorMode": {
 				"label": "Color Theme",
 				"light": "Light",
@@ -32,6 +34,17 @@
 				"red": "Red",
 				"neutral": "Neutral"
 			}
+		},
+		"shortcuts": {
+			"label": "Shortcuts",
+			"toggleWindow": "Toggle Window Visibility",
+			"pressKeys": "Press keys...",
+			"notSet": "Not assigned",
+			"unavailable": "No shortcut available"
+		},
+		"about": {
+			"label": "About",
+			"github": "Open in GitHub"
 		}
 	},
 	"tray": {

@@ -4,34 +4,47 @@
 	},
 	"settings": {
 		"label": "設定",
-		"tabs": {
-			"general": "一般",
-			"appearance": "外観",
-			"about": "情報"
-		},
-		"items": {
+		"general": {
+			"label": "一般",
 			"language": "言語",
-			"autoStart": "起動時に自動実行",
-			"github": "GitHub でソースコードを閲覧する",
+			"autoStart": "自動起動",
 			"closeToHide": {
-				"label": "閉じて非表示",
-				"description": "ウィンドウを閉じてもアプリをバックグラウンドで実行"
+				"label": "閉じる時にトレイに最小化",
+				"description": "ウィンドウを閉じた後もアプリをバックグラウンドで実行する"
 			},
+			"reset": {
+				"label": "すべての設定をリセット",
+				"button": "リセット"
+			}
+		},
+		"appearance": {
+			"label": "外観",
 			"colorMode": {
-				"label": "テーマ",
-				"light": "ライト",
-				"dark": "ダーク",
+				"label": "色調",
+				"light": "明",
+				"dark": "暗",
 				"system": "システム設定に従う"
 			},
 			"accentColor": {
-				"label": "強調色",
+				"label": "アクセントカラー",
 				"blue": "青",
-				"teal": "青緑",
+				"teal": "ティール",
 				"green": "緑",
 				"yellow": "黄",
 				"red": "赤",
-				"neutral": "無彩色"
+				"neutral": "ニュートラル"
 			}
+		},
+		"shortcuts": {
+			"label": "ショートカット",
+			"toggleWindow": "ウィンドウの表示を切り替え",
+			"pressKeys": "キーを押してください...",
+			"notSet": "未設定",
+			"unavailable": "利用可能なショートカットはありません"
+		},
+		"about": {
+			"label": "情報",
+			"github": "GitHub でソースコードを閲覧"
 		}
 	},
 	"tray": {

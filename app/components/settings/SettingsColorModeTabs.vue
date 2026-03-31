@@ -22,17 +22,17 @@ const tabValue = computed({
 const items = computed(() => [
 	{
 		value: 'light',
-		label: $t('settings.items.colorMode.light'),
+		label: $t('settings.appearance.colorMode.light'),
 		icon: 'i-ph-sun',
 	},
 	{
 		value: 'dark',
-		label: $t('settings.items.colorMode.dark'),
+		label: $t('settings.appearance.colorMode.dark'),
 		icon: 'i-ph-moon',
 	},
 	{
 		value: 'system',
-		label: $t('settings.items.colorMode.system'),
+		label: $t('settings.appearance.colorMode.system'),
 		icon: 'i-ph-monitor',
 	},
 ])

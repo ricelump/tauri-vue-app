@@ -7,6 +7,7 @@ import * as tauriAutoStart from '@tauri-apps/plugin-autostart'
 import * as tauriOs from '@tauri-apps/plugin-os'
 import * as tauriProcess from '@tauri-apps/plugin-process'
 import * as tauriStore from '@tauri-apps/plugin-store'
+import * as tauriGlobalShortcut from '@tauri-apps/plugin-global-shortcut'
 import { addImports, defineNuxtModule } from 'nuxt/kit'
 
 const capitalize = (name: string) => {
@@ -27,6 +28,11 @@ const tauriModules = [
 	{ module: tauriTray, prefix: 'Tray', importPath: '@tauri-apps/api/tray' },
 	{ module: tauriMenu, prefix: 'Menu', importPath: '@tauri-apps/api/menu' },
 	{ module: tauriProcess, prefix: 'Process', importPath: '@tauri-apps/plugin-process' },
+	{
+		module: tauriGlobalShortcut,
+		prefix: 'GlobalShortcut',
+		importPath: '@tauri-apps/plugin-global-shortcut',
+	},
 ]
 
 export default defineNuxtModule({
