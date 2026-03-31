@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const appWindow = useTauriWindowGetCurrentWindow()
+const { settings } = useSettings()
 
 const windowControlButtons = computed(() => [
 	{
@@ -21,7 +22,8 @@ const windowControlButtons = computed(() => [
 		key: 'close',
 		icon: 'i-ph-x',
 		onClick: async () => {
-			await appWindow.close()
+			if (settings.closeToHide) await appWindow.hide()
+			else await appWindow.close()
 		},
 	},
 ])

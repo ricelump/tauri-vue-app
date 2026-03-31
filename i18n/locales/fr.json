@@ -12,6 +12,10 @@
 		"items": {
 			"language": "Langue",
 			"autoStart": "Démarrage automatique",
+			"closeToHide": {
+				"label": "Fermer pour Masquer",
+				"description": "Garder l'application en arrière-plan lors de la fermeture de la fenêtre"
+			},
 			"colorMode": {
 				"label": "Thème",
 				"light": "Mode clair",
@@ -19,5 +23,10 @@
 				"system": "Suivre le système"
 			}
 		}
+	},
+	"tray": {
+		"show": "Afficher",
+		"relaunch": "Redémarrer",
+		"quit": "Quitter"
 	}
 }

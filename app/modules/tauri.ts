@@ -1,8 +1,11 @@
 import * as tauriApp from '@tauri-apps/api/app'
+import * as tauriMenu from '@tauri-apps/api/menu'
+import * as tauriTray from '@tauri-apps/api/tray'
 import * as tauriWebviewWindow from '@tauri-apps/api/webviewWindow'
 import * as tauriWindow from '@tauri-apps/api/window'
 import * as tauriAutoStart from '@tauri-apps/plugin-autostart'
 import * as tauriOs from '@tauri-apps/plugin-os'
+import * as tauriProcess from '@tauri-apps/plugin-process'
 import * as tauriStore from '@tauri-apps/plugin-store'
 import { addImports, defineNuxtModule } from 'nuxt/kit'
 
@@ -21,6 +24,9 @@ const tauriModules = [
 	{ module: tauriOs, prefix: 'Os', importPath: '@tauri-apps/plugin-os' },
 	{ module: tauriStore, prefix: 'Store', importPath: '@tauri-apps/plugin-store' },
 	{ module: tauriAutoStart, prefix: 'AutoStart', importPath: '@tauri-apps/plugin-autostart' },
+	{ module: tauriTray, prefix: 'Tray', importPath: '@tauri-apps/api/tray' },
+	{ module: tauriMenu, prefix: 'Menu', importPath: '@tauri-apps/api/menu' },
+	{ module: tauriProcess, prefix: 'Process', importPath: '@tauri-apps/plugin-process' },
 ]
 
 export default defineNuxtModule({

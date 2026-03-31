@@ -26,6 +26,7 @@ const processedLocales = computed(() => {
 		let displayCode = locale.code.replace('_', '-')
 		const localName = new Intl.DisplayNames([currentLocale.value.replace('_', '-')], {
 			type: 'language',
+			languageDisplay: 'dialect',
 		}).of(displayCode)
 		return {
 			...locale,
@@ -45,5 +46,6 @@ const processedLocales = computed(() => {
 		label-key="name"
 		value-key="code"
 		description-key="localName"
+		:ui="{ itemLabel: 'text-sm', itemDescription: 'text-xs' }"
 	/>
 </template>

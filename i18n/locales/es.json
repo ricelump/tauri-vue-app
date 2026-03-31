@@ -12,6 +12,10 @@
 		"items": {
 			"language": "Idioma",
 			"autoStart": "Iniciar con el sistema",
+			"closeToHide": {
+				"label": "Cerrar para Ocultar",
+				"description": "Mantener la aplicación en segundo plano al cerrar la ventana"
+			},
 			"colorMode": {
 				"label": "Tema",
 				"light": "Modo claro",
@@ -19,5 +23,10 @@
 				"system": "Seguir al sistema"
 			}
 		}
+	},
+	"tray": {
+		"show": "Mostrar",
+		"relaunch": "Reiniciar",
+		"quit": "Salir"
 	}
 }

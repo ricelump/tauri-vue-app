@@ -12,6 +12,10 @@
 		"items": {
 			"language": "Language",
 			"autoStart": "Launch on Startup",
+			"closeToHide": {
+				"label": "Close to Hide",
+				"description": "Keep app running in background when closing window"
+			},
 			"colorMode": {
 				"label": "Color Theme",
 				"light": "Light",
@@ -19,5 +23,10 @@
 				"system": "Follow System"
 			}
 		}
+	},
+	"tray": {
+		"show": "Show",
+		"relaunch": "Relaunch",
+		"quit": "Quit"
 	}
 }

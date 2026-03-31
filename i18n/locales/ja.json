@@ -1,6 +1,6 @@
 {
 	"common": {
-		"openAppMenu": "アプリケーションメニューを開く"
+		"openAppMenu": "アプリメニューを開く"
 	},
 	"settings": {
 		"label": "設定",
@@ -11,13 +11,22 @@
 		},
 		"items": {
 			"language": "言語",
-			"autoStart": "自動起動",
+			"autoStart": "起動時に自動実行",
+			"closeToHide": {
+				"label": "閉じて非表示",
+				"description": "ウィンドウを閉じてもアプリをバックグラウンドで実行"
+			},
 			"colorMode": {
 				"label": "テーマ",
-				"light": "ライトモード",
-				"dark": "ダークモード",
-				"system": "システムに準拠"
+				"light": "ライト",
+				"dark": "ダーク",
+				"system": "システム設定に従う"
 			}
 		}
+	},
+	"tray": {
+		"show": "表示",
+		"relaunch": "再起動",
+		"quit": "終了"
 	}
 }

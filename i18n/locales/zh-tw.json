@@ -12,6 +12,10 @@
 		"items": {
 			"language": "語言",
 			"autoStart": "開機自動啟動",
+			"closeToHide": {
+				"label": "關閉時隱藏",
+				"description": "關閉視窗時保持應用程式在背景執行"
+			},
 			"colorMode": {
 				"label": "色調主題",
 				"light": "淺色模式",
@@ -19,5 +23,10 @@
 				"system": "跟隨系統"
 			}
 		}
+	},
+	"tray": {
+		"show": "顯示",
+		"relaunch": "重新啟動",
+		"quit": "結束"
 	}
 }

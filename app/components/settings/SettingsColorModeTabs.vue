@@ -15,7 +15,7 @@ const tabValue = computed({
 	},
 	set(val) {
 		emit('update:modelValue', val)
-		colorMode.value = val
+		colorMode.preference = val
 	},
 })
 

@@ -21,16 +21,25 @@ const items = [
 		:ui="{ content: 'mt-4 flex flex-col gap-1' }"
 	>
 		<template #general>
-			<SettingsItem :label="$t('settings.items.language')" icon="i-ph-globe-simple">
+			<SettingsItem :label="$t('settings.items.language')" icon="i-ph-globe-simple-duotone">
 				<SettingsLocaleSelect v-model="settings.locale" />
 			</SettingsItem>
-			<SettingsItem v-if="isTauri" :label="$t('settings.items.autoStart')" icon="i-ph-power">
-				<USwitch v-model="settings.autoStart" />
-			</SettingsItem>
+			<template v-if="isTauri">
+				<SettingsItem :label="$t('settings.items.autoStart')" icon="i-ph-power-duotone">
+					<USwitch v-model="settings.autoStart" />
+				</SettingsItem>
+				<SettingsItem
+					:label="$t('settings.items.closeToHide.label')"
+					icon="i-ph-x-circle-duotone"
+					:description="$t('settings.items.closeToHide.description')"
+				>
+					<USwitch v-model="settings.closeToHide" />
+				</SettingsItem>
+			</template>
 		</template>
 
 		<template #appearance>
-			<SettingsItem :label="$t('settings.items.colorMode.label')" icon="i-ph-circle-half">
+			<SettingsItem :label="$t('settings.items.colorMode.label')" icon="i-ph-circle-half-duotone">
 				<SettingsColorModeTabs v-model="settings.colorMode" />
 			</SettingsItem>
 		</template>
