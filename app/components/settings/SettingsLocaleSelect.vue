@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { Settings } from '~/types/settings'
+import type { Locales } from '~/types/settings'
 
 const props = defineProps<{
-	modelValue: Settings['locale']
+	modelValue: Locales
 }>()
 
 const emit = defineEmits<{
-	'update:modelValue': [value: Settings['locale']]
+	'update:modelValue': [value: Locales]
 }>()
 
 const { locale: currentLocale, locales, setLocale } = useI18n()

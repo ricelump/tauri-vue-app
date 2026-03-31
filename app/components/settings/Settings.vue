@@ -6,9 +6,9 @@ const props = defineProps<{
 const { settings } = useSettings()
 
 const items = [
-	{ label: $t('settings.tabs.general'), icon: 'i-ph-gear-fine', slot: 'general' },
-	{ label: $t('settings.tabs.appearance'), icon: 'i-ph-palette', slot: 'appearance' },
-	{ label: $t('settings.tabs.about'), icon: 'i-ph-info', slot: 'about' },
+	{ label: $t('settings.tabs.general'), icon: 'i-ph-gear-fine-bold', slot: 'general' },
+	{ label: $t('settings.tabs.appearance'), icon: 'i-ph-palette-bold', slot: 'appearance' },
+	{ label: $t('settings.tabs.about'), icon: 'i-ph-info-bold', slot: 'about' },
 ]
 </script>
 

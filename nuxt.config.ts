@@ -20,8 +20,7 @@ export default defineNuxtConfig({
 		},
 	},
 	i18n: {
- strategy: 'no_prefix',
-		defaultLocale: 'en',
+		strategy: 'no_prefix',
 		locales: [
 			{
 				code: 'en',
@@ -93,7 +92,7 @@ export default defineNuxtConfig({
 		preset: 'static',
 	},
 	devtools: {
-		enabled: false,
+		enabled: true,
 	},
 	experimental: {
 		typedPages: true,

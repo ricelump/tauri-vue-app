@@ -1,4 +1,4 @@
-export async function useTray() {
+export async function createTray() {
 	if (!isTauri) return null
 
 	const trayInstance: any = ref(null)
