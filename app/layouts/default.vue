@@ -1,7 +1,9 @@
 <template>
-	<LayoutHeader />
+	<main class="min-h-screen select-none">
+		<LayoutHeader />
 
-	<div class="mt-12">
-		<slot />
-	</div>
+		<div class="relative h-screen w-full">
+			<slot />
+		</div>
+	</main>
 </template>

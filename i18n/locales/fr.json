@@ -1,7 +1,27 @@
 {
 	"common": {
-		"openAppMenu": "Ouvrir le menu de l'application"
+		"openAppMenu": "Ouvrir le menu de l'application",
+		"save": "Enregistrer"
 	},
+	"pages": {
+		"welcome": {
+			"title": "Bienvenue",
+			"description": "Aucun bucket pour le moment. Ajoutez votre bucket S3 pour commencer."
+		}
+	},
+	"bucket": {
+		"label": "Bucket",
+		"add": "Ajouter un bucket",
+		"fields": {
+			"bucketName": "Nom du bucket",
+			"endpoint": "Point de terminaison",
+			"region": "Région",
+			"accessKey": "ID de clé d'accès",
+			"secretKey": "Clé d'accès secrète",
+			"publicUrl": "URL publique"
+		}
+	},
+
 	"settings": {
 		"label": "Paramètres",
 		"general": {

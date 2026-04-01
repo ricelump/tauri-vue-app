@@ -1,6 +1,25 @@
 {
 	"common": {
-		"openAppMenu": "打开应用菜单"
+		"openAppMenu": "打开应用菜单",
+		"save": "保存"
+	},
+	"pages": {
+		"welcome": {
+			"title": "欢迎使用",
+			"description": "暂无存储桶，请添加您的 S3 存储桶以开始使用。"
+		}
+	},
+	"bucket": {
+		"label": "存储桶",
+		"add": "添加存储桶",
+		"fields": {
+			"bucketName": "存储桶名称",
+			"endpoint": "服务端点地址",
+			"region": "区域",
+			"accessKey": "访问密钥 ID",
+			"secretKey": "访问密钥 Secret",
+			"publicUrl": "公开访问地址"
+		}
 	},
 	"settings": {
 		"label": "设置",

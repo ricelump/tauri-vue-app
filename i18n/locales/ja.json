@@ -1,6 +1,25 @@
 {
 	"common": {
-		"openAppMenu": "アプリメニューを開く"
+		"openAppMenu": "アプリメニューを開く",
+		"save": "保存"
+	},
+	"pages": {
+		"welcome": {
+			"title": "ようこそ",
+			"description": "バケットがありません。S3バケットを追加して開始してください。"
+		}
+	},
+	"bucket": {
+		"label": "バケット",
+		"add": "バケットを追加",
+		"fields": {
+			"bucketName": "バケット名",
+			"endpoint": "エンドポイント",
+			"region": "リージョン",
+			"accessKey": "アクセスキーID",
+			"secretKey": "シークレットアクセスキー",
+			"publicUrl": "パブリックURL"
+		}
 	},
 	"settings": {
 		"label": "設定",

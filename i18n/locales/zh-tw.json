@@ -1,6 +1,25 @@
 {
 	"common": {
-		"openAppMenu": "開啟應用程式選單"
+		"openAppMenu": "開啟應用程式選單",
+		"save": "儲存"
+	},
+	"pages": {
+		"welcome": {
+			"title": "歡迎使用",
+			"description": "暫無儲存桶，請新增您的 S3 儲存桶以開始使用。"
+		}
+	},
+	"bucket": {
+		"label": "儲存桶",
+		"add": "新增儲存桶",
+		"fields": {
+			"bucketName": "儲存桶名稱",
+			"endpoint": "服務端點位址",
+			"region": "區域",
+			"accessKey": "存取金鑰 ID",
+			"secretKey": "存取金鑰 Secret",
+			"publicUrl": "公開存取位址"
+		}
 	},
 	"settings": {
 		"label": "設定",

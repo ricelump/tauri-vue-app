@@ -77,9 +77,9 @@ onUnmounted(() => {
 	<div class="flex items-center gap-2">
 		<UButton :color="recording ? 'primary' : 'neutral'" variant="outline" @click="startRecording">
 			<template v-if="recording">
-				<span class="animate-pulse text-sm text-primary">{{
-					$t('settings.shortcuts.pressKeys')
-				}}</span>
+				<span class="animate-pulse text-sm text-primary">
+					{{ $t('settings.shortcuts.pressKeys') }}
+				</span>
 			</template>
 			<template v-else-if="hasShortcut">
 				<UKbd
@@ -95,14 +95,14 @@ onUnmounted(() => {
 
 		<UButton
 			v-if="hasShortcut && !recording"
-			icon="i-ph-backspace-bold"
+			icon="i-ph-backspace"
 			color="neutral"
 			variant="outline"
 			@click.stop="clearShortcut"
 		/>
 		<UButton
 			v-if="recording"
-			icon="i-ph-stop-circle-bold"
+			icon="i-ph-stop-circle"
 			color="neutral"
 			variant="outline"
 			@click.stop="stopRecording"

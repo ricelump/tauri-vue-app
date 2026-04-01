@@ -1,3 +1,3 @@
 <template>
-	<UButton label="test" />
+	<PageWelcome />
 </template>

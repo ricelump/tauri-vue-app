@@ -1,6 +1,25 @@
 {
 	"common": {
-		"openAppMenu": "Open Application Menu"
+		"openAppMenu": "Open Application Menu",
+		"save": "Save"
+	},
+	"pages": {
+		"welcome": {
+			"title": "Welcome to",
+			"description": "No buckets yet. Add your S3 bucket to get started."
+		}
+	},
+	"bucket": {
+		"label": "Bucket",
+		"add": "Add Bucket",
+		"fields": {
+			"bucketName": "Bucket Name",
+			"endpoint": "Endpoint",
+			"region": "Region",
+			"accessKey": "Access Key ID",
+			"secretKey": "Secret Access Key",
+			"publicUrl": "Public URL"
+		}
 	},
 	"settings": {
 		"label": "Settings",
