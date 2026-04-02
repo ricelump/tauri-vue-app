@@ -1,9 +1,7 @@
 <template>
-	<main class="min-h-screen select-none">
-		<LayoutHeader />
+	<LayoutHeader />
 
-		<div class="relative h-screen w-full">
-			<slot />
-		</div>
+	<main class="h-[calc(100vh-var(--ui-header-height))]">
+		<slot />
 	</main>
 </template>

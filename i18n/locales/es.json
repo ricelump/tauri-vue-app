@@ -12,6 +12,8 @@
 	"bucket": {
 		"label": "Bucket",
 		"add": "Agregar bucket",
+		"select": "Seleccionar bucket",
+		"manage": "Administrar buckets",
 		"fields": {
 			"bucketName": "Nombre del bucket",
 			"endpoint": "Endpoint",

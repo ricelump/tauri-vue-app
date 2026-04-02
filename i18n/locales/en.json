@@ -12,6 +12,8 @@
 	"bucket": {
 		"label": "Bucket",
 		"add": "Add Bucket",
+		"select": "Select Bucket",
+		"manage": "Manage Buckets",
 		"fields": {
 			"bucketName": "Bucket Name",
 			"endpoint": "Endpoint",

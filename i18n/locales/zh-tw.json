@@ -12,6 +12,8 @@
 	"bucket": {
 		"label": "儲存桶",
 		"add": "新增儲存桶",
+		"select": "選擇儲存桶",
+		"manage": "管理儲存桶",
 		"fields": {
 			"bucketName": "儲存桶名稱",
 			"endpoint": "服務端點位址",

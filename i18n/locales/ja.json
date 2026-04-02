@@ -12,6 +12,8 @@
 	"bucket": {
 		"label": "バケット",
 		"add": "バケットを追加",
+		"select": "バケットを選択",
+		"manage": "バケットを管理",
 		"fields": {
 			"bucketName": "バケット名",
 			"endpoint": "エンドポイント",

@@ -32,12 +32,13 @@ async function handleWindowDrag(event: MouseEvent) {
 
 <template>
 	<div
-		class="fixed top-0 right-0 left-0 z-50 flex h-12 items-center justify-between pl-2 select-none"
+		class="sticky top-0 z-50 flex h-(--ui-header-height) items-center justify-between bg-default pl-2 select-none"
 		@mousedown="handleWindowDrag"
 	>
-		<section class="flex h-full items-center gap-2">
+		<section class="flex h-full items-center gap-0.5">
 			<LayoutHeaderDropdownMenu />
-			<p class="text-sm">{{ appConfig.app.name }}</p>
+			<!-- <p class="text-sm">{{ appConfig.app.name }}</p> -->
+			<BucketSelectDropdownMenu />
 		</section>
 
 		<LayoutWindowControlButtons v-if="isTauri" />

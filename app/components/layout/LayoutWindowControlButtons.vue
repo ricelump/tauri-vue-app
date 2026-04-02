@@ -30,7 +30,7 @@ const windowControlButtons = computed(() => [
 </script>
 
 <template>
-	<section class="flex h-full items-center">
+	<section class="flex items-center">
 		<div class="flex items-center">
 			<template v-for="button of windowControlButtons" :key="button.key">
 				<UButton
@@ -39,7 +39,7 @@ const windowControlButtons = computed(() => [
 					color="neutral"
 					:icon="button.icon"
 					:class="[
-						'flex size-12 items-center justify-center rounded-none p-0',
+						'flex h-(--ui-header-height) w-12 items-center justify-center rounded-none p-0',
 						button.key === 'close' && 'hover:bg-red-500 hover:text-white active:bg-red-600',
 					]"
 					@click="button.onClick"
