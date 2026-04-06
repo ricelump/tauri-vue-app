@@ -10,6 +10,7 @@ const props = defineProps<{
 const emit = defineEmits<{
 	select: [file: BucketFile]
 	'row-click': [e: Event, row: TableRow<BucketFile>]
+	delete: [file: BucketFile]
 }>()
 
 const UCheckbox = resolveComponent('UCheckbox')
@@ -95,6 +96,7 @@ function getContextMenuItems(row: TableRow<BucketFile>): DropdownMenuItem[][] {
 				label: 'Delete',
 				icon: 'i-ph-trash',
 				color: 'error',
+				onSelect: () => emit('delete', file),
 			},
 		],
 	]
@@ -108,15 +110,11 @@ function onSelect(e: Event, row: TableRow<BucketFile>) {
 	emit('row-click', e, row)
 }
 
-// expose selection state for parent
 defineExpose({
 	rowSelection,
 	clearSelection: () => {
 		rowSelection.value = {}
 	},
-	selectedFiles: computed(() => {
-		return props.files.filter((file) => rowSelection.value[file.key])
-	}),
 })
 </script>
 

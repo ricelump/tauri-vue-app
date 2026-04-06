@@ -1,4 +1,10 @@
-import { S3Client, HeadBucketCommand, PutObjectCommand } from '@aws-sdk/client-s3'
+import {
+	S3Client,
+	HeadBucketCommand,
+	PutObjectCommand,
+	DeleteObjectsCommand,
+	DeleteObjectCommand,
+} from '@aws-sdk/client-s3'
 import type { Bucket } from '~/types/bucket'
 
 export function useS3(bucketRef?: Ref<Bucket | null>) {
@@ -98,6 +104,54 @@ export function useS3(bucketRef?: Ref<Bucket | null>) {
 		}
 	}
 
+	async function deleteFile(key: string): Promise<boolean> {
+		const s3 = getClient()
+		const bucket = bucketRef?.value
+		if (!s3 || !bucket) return false
+
+		uploading.value = true
+		error.value = null
+
+		try {
+			await s3.send(
+				new DeleteObjectCommand({
+					Bucket: bucket.bucketName,
+					Key: key,
+				}),
+			)
+			return true
+		} catch (err: any) {
+			error.value = err.message || 'Delete failed'
+			return false
+		} finally {
+			uploading.value = false
+		}
+	}
+
+	async function deleteFiles(keys: string[]): Promise<boolean> {
+		const s3 = getClient()
+		const bucket = bucketRef?.value
+		if (!s3 || !bucket || keys.length === 0) return false
+
+		uploading.value = true
+		error.value = null
+
+		try {
+			await s3.send(
+				new DeleteObjectsCommand({
+					Bucket: bucket.bucketName,
+					Delete: { Objects: keys.map((Key) => ({ Key })), Quiet: false },
+				}),
+			)
+			return true
+		} catch (err: any) {
+			error.value = err.message || 'Batch delete failed'
+			return false
+		} finally {
+			uploading.value = false
+		}
+	}
+
 	// reset bucket
 	if (bucketRef) {
 		watch(
@@ -116,6 +170,8 @@ export function useS3(bucketRef?: Ref<Bucket | null>) {
 		error: readonly(error),
 		test,
 		upload,
+		deleteFile,
+		deleteFiles,
 		getClient,
 	}
 }

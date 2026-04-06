@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{
+import type { DropdownMenuItem } from '@nuxt/ui'
+
+const props = defineProps<{
 	currentPath: string
 	breadcrumbs: string[]
 	hasSelection: boolean
@@ -7,12 +9,32 @@ defineProps<{
 	totalCount: number
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
 	navigateUp: []
 	navigateTo: [index: number]
 	upload: []
 	refresh: []
+	clearSelection: []
+	deleteAll: []
 }>()
+
+const bulkActions: DropdownMenuItem[][] = [
+	[
+		{
+			label: 'Delete All',
+			icon: 'i-ph-trash',
+			color: 'error',
+			onSelect: () => emit('deleteAll'),
+		},
+	],
+	[
+		{
+			label: 'Clear Selection',
+			icon: 'i-ph-selection-slash',
+			onSelect: () => emit('clearSelection'),
+		},
+	],
+]
 </script>
 
 <template>
@@ -41,8 +63,14 @@ defineEmits<{
 		</div>
 
 		<div class="flex items-center gap-2">
-			<slot name="bulk-actions" />
-
+			<UDropdownMenu v-if="hasSelection" :items="bulkActions">
+				<UButton
+					:label="`${selectionCount} of ${totalCount} selected`"
+					color="primary"
+					variant="soft"
+					trailing-icon="i-ph-caret-down"
+				/>
+			</UDropdownMenu>
 			<UButton
 				label="Upload"
 				icon="i-ph-upload-simple"

@@ -78,10 +78,12 @@ export default defineNuxtConfig({
 		modules: 'app/modules',
 	},
 	icon: {
-		provider: 'local',
 		clientBundle: {
 			scan: true,
 		},
+	},
+	ui: {
+		fonts: false,
 	},
 	router: {
 		options: {

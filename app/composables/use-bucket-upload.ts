@@ -5,7 +5,6 @@ export function useBucketUpload(
 	currentPath: Ref<string>,
 	refresh: () => Promise<void>,
 ) {
-	const fileInput = ref<HTMLInputElement>()
 	const { upload: s3Upload } = useS3(bucketRef)
 	const toast = useToast()
 
@@ -22,7 +21,6 @@ export function useBucketUpload(
 
 		await Promise.all(files.map((file) => uploadSingle(file)))
 		await refresh()
-		if (fileInput.value) fileInput.value.value = ''
 	}
 
 	async function uploadSingle(file: File) {
@@ -35,9 +33,7 @@ export function useBucketUpload(
 					color: 'success',
 					icon: 'i-ph-check-circle',
 				})
-			} else {
-				throw new Error('Upload failed')
-			}
+			} else throw new Error('Upload failed')
 		} catch {
 			toast.add({
 				title: `${file.name} failed`,
@@ -47,13 +43,12 @@ export function useBucketUpload(
 		}
 	}
 
-	function openFilePicker() {
-		fileInput.value?.click()
+	function resetFileInput(inputElement: HTMLInputElement | null | undefined) {
+		if (inputElement) inputElement.value = ''
 	}
 
 	return {
-		fileInput,
 		uploadFiles,
-		openFilePicker,
+		resetFileInput,
 	}
 }
