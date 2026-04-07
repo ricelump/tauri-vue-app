@@ -34,7 +34,7 @@ const { uploadFiles, resetFileInput, createFolder } = useBucketUpload(
 	refresh,
 )
 
-const { deleteFile, deleteFiles } = useS3(toRef(props, 'bucket'))
+const { deleteFile, deleteFiles, rename } = useS3(toRef(props, 'bucket'))
 const toast = useToast()
 const overlay = useOverlay()
 
@@ -66,7 +66,7 @@ async function openInputDialog(options: {
 	placeholder?: string
 }): Promise<string | null> {
 	return new Promise((resolve) => {
-		const instance = inputModal.open({
+		inputModal.open({
 			title: options.title,
 			description: options.description,
 			icon: options.icon || 'i-ph-folder-simple-plus',
@@ -92,6 +92,28 @@ async function handleCreateFolder() {
 		toast.add({ title: `Folder "${folderName}" created`, color: 'success' })
 		await refresh()
 	} else toast.add({ title: `Failed to create folder "${folderName}"`, color: 'error' })
+}
+
+async function handleRenameFile(file: BucketFile) {
+	const oldName = file.name
+	const newName = await openInputDialog({
+		title: `Rename "${oldName}"`,
+		description: 'Enter the new name.',
+		icon: 'i-ph-pencil-simple',
+		placeholder: oldName,
+	})
+	if (!newName || newName.trim() === '' || newName === oldName) return
+
+	const oldKey = file.key
+	const newKey = file.isDirectory
+		? `${currentPath.value}${newName.trim()}/`
+		: `${currentPath.value}${newName.trim()}`
+
+	const success = await rename(oldKey, newKey)
+	if (success) {
+		toast.add({ title: `Renamed to "${newName}"`, color: 'success' })
+		await refresh()
+	} else toast.add({ title: `Failed to rename "${oldName}"`, color: 'error' })
 }
 
 async function handleDeleteFile(file: BucketFile) {
@@ -202,6 +224,7 @@ function openFilePicker() {
 			:loading="loading"
 			@select="onFileClick"
 			@row-click="onRowClick"
+			@rename="handleRenameFile"
 			@delete="handleDeleteFile"
 		/>
 	</div>

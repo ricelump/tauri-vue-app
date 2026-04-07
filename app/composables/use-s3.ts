@@ -2,6 +2,7 @@ import {
 	S3Client,
 	HeadBucketCommand,
 	PutObjectCommand,
+	RenameObjectCommand,
 	DeleteObjectsCommand,
 	DeleteObjectCommand,
 } from '@aws-sdk/client-s3'
@@ -104,6 +105,37 @@ export function useS3(bucketRef?: Ref<Bucket | null>) {
 		}
 	}
 
+	async function rename(oldKey: string, newKey: string): Promise<boolean> {
+		const s3 = getClient()
+		const bucket = bucketRef?.value
+		if (!s3 || !bucket) return false
+
+		uploading.value = true
+		error.value = null
+
+		try {
+			await s3.send(
+				new RenameObjectCommand({
+					Bucket: bucket.bucketName,
+					Key: newKey,
+					RenameSource: oldKey,
+				}),
+			)
+			await s3.send(
+				new DeleteObjectCommand({
+					Bucket: bucket.bucketName,
+					Key: oldKey,
+				}),
+			)
+			return true
+		} catch (err: any) {
+			error.value = err.message || 'Rename failed'
+			return false
+		} finally {
+			uploading.value = false
+		}
+	}
+
 	async function deleteFile(key: string): Promise<boolean> {
 		const s3 = getClient()
 		const bucket = bucketRef?.value
@@ -170,6 +202,7 @@ export function useS3(bucketRef?: Ref<Bucket | null>) {
 		error: readonly(error),
 		test,
 		upload,
+		rename,
 		deleteFile,
 		deleteFiles,
 		getClient,

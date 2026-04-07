@@ -11,6 +11,7 @@ const emit = defineEmits<{
 	select: [file: BucketFile]
 	'row-click': [e: Event, row: TableRow<BucketFile>]
 	delete: [file: BucketFile]
+	rename: [file: BucketFile]
 }>()
 
 const UCheckbox = resolveComponent('UCheckbox')
@@ -91,6 +92,7 @@ function getContextMenuItems(row: TableRow<BucketFile>): DropdownMenuItem[][] {
 			{
 				label: 'Rename',
 				icon: 'i-ph-pencil-simple',
+				onSelect: () => emit('rename', file),
 			},
 			{
 				label: 'Delete',
