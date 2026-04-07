@@ -28,13 +28,7 @@ const {
 	refresh,
 } = useBucketFiles(toRef(props, 'bucket'))
 
-const { uploadFiles, resetFileInput, createFolder } = useBucketUpload(
-	toRef(props, 'bucket'),
-	currentPath,
-	refresh,
-)
-
-const { deleteFile, deleteFiles, rename } = useS3(toRef(props, 'bucket'))
+const { upload, createFolder, deleteFile, deleteFiles, rename } = useS3(toRef(props, 'bucket'))
 const toast = useToast()
 const overlay = useOverlay()
 
@@ -87,7 +81,7 @@ async function handleCreateFolder() {
 	})
 	if (!folderName || folderName.trim() === '') return
 
-	const success = await createFolder(folderName.trim())
+	const success = await createFolder(folderName.trim(), currentPath.value)
 	if (success) {
 		toast.add({ title: `Folder "${folderName}" created`, color: 'success' })
 		await refresh()
@@ -166,9 +160,42 @@ async function handleDeleteAll() {
 	} else toast.add({ title: 'Batch deletion failed', color: 'error' })
 }
 
-async function handleFileUpload(files: FileList | null) {
-	await uploadFiles(files)
-	resetFileInput(fileInputRef.value)
+async function handleFileUpload(selectedFiles: FileList | null) {
+	if (!selectedFiles || !props.bucket) return
+
+	const files = Array.from(selectedFiles)
+
+	toast.add({
+		title: `Uploading ${files.length} file${files.length > 1 ? 's' : ''}`,
+		color: 'info',
+		icon: 'i-ph-upload-simple',
+	})
+
+	await Promise.all(
+		files.map(async (file) => {
+			const key = `${currentPath.value}${file.name}`
+			try {
+				const success = await upload(key, file, file.type)
+				if (success) {
+					toast.add({
+						title: `${file.name} uploaded`,
+						color: 'success',
+						icon: 'i-ph-check-circle',
+					})
+				} else throw new Error('Upload failed')
+			} catch {
+				toast.add({
+					title: `${file.name} failed`,
+					color: 'error',
+					icon: 'i-ph-warning-circle',
+				})
+			}
+		}),
+	)
+
+	await refresh()
+
+	if (fileInputRef.value) fileInputRef.value.value = ''
 }
 
 function onFileClick(file: BucketFile) {
@@ -201,7 +228,7 @@ function openFilePicker() {
 			@change="handleFileUpload(($event.target as HTMLInputElement).files)"
 		/>
 
-		<BucketToolbar
+		<BucketFileToolbar
 			:current-path="currentPath"
 			:breadcrumbs="breadcrumbs"
 			:has-selection="Object.keys(rowSelection).length > 0"
@@ -216,7 +243,7 @@ function openFilePicker() {
 			@create-folder="handleCreateFolder"
 		/>
 
-		<DragDropZone @drop="uploadFiles" />
+		<DragDropZone @drop="handleFileUpload" />
 
 		<BucketFileTable
 			ref="tableRef"

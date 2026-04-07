@@ -37,7 +37,7 @@ onMounted(async () => {
 </script>
 
 <template>
-	<UApp :locale="locales[locale]" :toaster="{ position: 'top-center' }">
+	<UApp :locale="locales[locale]" :toaster="{ position: 'bottom-center' }">
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>

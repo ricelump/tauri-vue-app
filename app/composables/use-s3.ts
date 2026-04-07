@@ -105,6 +105,13 @@ export function useS3(bucketRef?: Ref<Bucket | null>) {
 		}
 	}
 
+	async function createFolder(folderName: string, currentPath: string): Promise<boolean> {
+		if (!folderName || folderName.trim() === '') return false
+		const folderKey = `${currentPath}${folderName}/.keep`
+		const keepFile = new Blob([''], { type: 'text/plain' })
+		return await upload(folderKey, keepFile, 'text/plain')
+	}
+
 	async function rename(oldKey: string, newKey: string): Promise<boolean> {
 		const s3 = getClient()
 		const bucket = bucketRef?.value
@@ -202,6 +209,7 @@ export function useS3(bucketRef?: Ref<Bucket | null>) {
 		error: readonly(error),
 		test,
 		upload,
+		createFolder,
 		rename,
 		deleteFile,
 		deleteFiles,
