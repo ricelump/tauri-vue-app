@@ -43,12 +43,20 @@ export function useBucketUpload(
 		}
 	}
 
+	async function createFolder(folderName: string): Promise<boolean> {
+		if (!folderName || folderName.trim() === '') return false
+		const folderKey = `${currentPath.value}${folderName}/.keep`
+		const keepFile = new Blob([''], { type: 'text/plain' })
+		return await s3Upload(folderKey, keepFile, 'text/plain')
+	}
+
 	function resetFileInput(inputElement: HTMLInputElement | null | undefined) {
 		if (inputElement) inputElement.value = ''
 	}
 
 	return {
 		uploadFiles,
+		createFolder,
 		resetFileInput,
 	}
 }

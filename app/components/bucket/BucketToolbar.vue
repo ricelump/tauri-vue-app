@@ -16,6 +16,7 @@ const emit = defineEmits<{
 	refresh: []
 	clearSelection: []
 	deleteAll: []
+	createFolder: []
 }>()
 
 const bulkActions: DropdownMenuItem[][] = [
@@ -42,13 +43,15 @@ const bulkActions: DropdownMenuItem[][] = [
 		class="flex items-center justify-between gap-2 overflow-x-auto border-b border-default px-2 py-1.5"
 	>
 		<div class="flex items-center gap-3">
-			<UButton
-				icon="i-ph-arrow-left"
-				color="neutral"
-				variant="ghost"
-				:disabled="!currentPath"
-				@click="$emit('navigateUp')"
-			/>
+			<UTooltip text="Navigate Up">
+				<UButton
+					icon="i-ph-arrow-left"
+					color="neutral"
+					variant="ghost"
+					:disabled="!currentPath"
+					@click="$emit('navigateUp')"
+				/>
+			</UTooltip>
 
 			<UBreadcrumb
 				:items="[
@@ -61,8 +64,7 @@ const bulkActions: DropdownMenuItem[][] = [
 				]"
 			/>
 		</div>
-
-		<div class="flex items-center gap-2">
+		<div class="flex items-center gap-0.5">
 			<UDropdownMenu v-if="hasSelection" :items="bulkActions">
 				<UButton
 					:label="`${selectionCount} of ${totalCount} selected`"
@@ -78,12 +80,22 @@ const bulkActions: DropdownMenuItem[][] = [
 				variant="ghost"
 				@click="$emit('upload')"
 			/>
-			<UButton
-				icon="i-ph-arrows-clockwise"
-				color="neutral"
-				variant="ghost"
-				@click="$emit('refresh')"
-			/>
+			<UTooltip text="Create Folder">
+				<UButton
+					icon="i-ph-folder-simple-plus"
+					color="neutral"
+					variant="ghost"
+					@click="$emit('createFolder')"
+				/>
+			</UTooltip>
+			<UTooltip text="Refresh">
+				<UButton
+					icon="i-ph-arrows-clockwise"
+					color="neutral"
+					variant="ghost"
+					@click="$emit('refresh')"
+				/>
+			</UTooltip>
 		</div>
 	</div>
 </template>

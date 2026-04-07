@@ -2,7 +2,7 @@
 import type { TableRow } from '@nuxt/ui'
 import type { Bucket } from '~/types/bucket'
 import type { BucketFile } from '~/types/file'
-import { LazyAlertModal } from '#components'
+import { LazyAlertModal, LazyInputModal } from '#components'
 
 const props = defineProps<{
 	bucket: Bucket | null
@@ -28,7 +28,7 @@ const {
 	refresh,
 } = useBucketFiles(toRef(props, 'bucket'))
 
-const { uploadFiles, resetFileInput } = useBucketUpload(
+const { uploadFiles, resetFileInput, createFolder } = useBucketUpload(
 	toRef(props, 'bucket'),
 	currentPath,
 	refresh,
@@ -39,6 +39,7 @@ const toast = useToast()
 const overlay = useOverlay()
 
 const alertModal = overlay.create(LazyAlertModal)
+const inputModal = overlay.create(LazyInputModal)
 
 async function openConfirmDialog(options: {
 	title: string
@@ -46,7 +47,7 @@ async function openConfirmDialog(options: {
 	destructive?: boolean
 }): Promise<boolean> {
 	return new Promise((resolve) => {
-		const instance = alertModal.open({
+		alertModal.open({
 			title: options.title,
 			description: options.description,
 			icon: 'i-ph-trash',
@@ -56,6 +57,41 @@ async function openConfirmDialog(options: {
 			},
 		})
 	})
+}
+
+async function openInputDialog(options: {
+	title: string
+	description: string
+	icon?: string
+	placeholder?: string
+}): Promise<string | null> {
+	return new Promise((resolve) => {
+		const instance = inputModal.open({
+			title: options.title,
+			description: options.description,
+			icon: options.icon || 'i-ph-folder-simple-plus',
+			placeholder: options.placeholder || 'Name',
+			onConfirm: (value: string) => {
+				resolve(value)
+			},
+		})
+	})
+}
+
+async function handleCreateFolder() {
+	const folderName = await openInputDialog({
+		title: 'Create New Folder',
+		description: 'Enter the name of the folder you want to create.',
+		icon: 'i-ph-folder-simple-plus',
+		placeholder: 'Folder name',
+	})
+	if (!folderName || folderName.trim() === '') return
+
+	const success = await createFolder(folderName.trim())
+	if (success) {
+		toast.add({ title: `Folder "${folderName}" created`, color: 'success' })
+		await refresh()
+	} else toast.add({ title: `Failed to create folder "${folderName}"`, color: 'error' })
 }
 
 async function handleDeleteFile(file: BucketFile) {
@@ -155,6 +191,7 @@ function openFilePicker() {
 			@refresh="refresh"
 			@clear-selection="handleClearSelection"
 			@delete-all="handleDeleteAll"
+			@create-folder="handleCreateFolder"
 		/>
 
 		<DragDropZone @drop="uploadFiles" />
