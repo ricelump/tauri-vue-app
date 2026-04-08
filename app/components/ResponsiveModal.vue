@@ -26,19 +26,25 @@ function close() {
 	<UModal
 		v-if="isDesktop"
 		:title="title"
-		:description="description"
 		:close="!!title"
 		:dismissible="false"
 		:class="modalClass"
+		:ui="{ footer: 'justify-end' }"
 	>
 		<template #body="{ close: modalClose }">
 			<slot name="body" :close="modalClose" />
+		</template>
+		<template v-if="$slots.footer" #footer="{ close: modalClose }">
+			<slot name="footer" :close="modalClose" />
 		</template>
 	</UModal>
 
 	<UDrawer v-else :title="props.title" :description="props.description" :class="drawerClass">
 		<template #body>
 			<slot name="body" :close="close" />
+		</template>
+		<template v-if="$slots.footer" #footer>
+			<slot name="footer" :close="close" />
 		</template>
 	</UDrawer>
 </template>

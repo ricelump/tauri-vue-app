@@ -2,7 +2,6 @@
 import type { TableRow } from '@nuxt/ui'
 import type { Bucket } from '~/types/bucket'
 import type { BucketFile } from '~/types/file'
-import { LazyAlertModal, LazyInputModal } from '#components'
 
 const props = defineProps<{
 	bucket: Bucket | null
@@ -30,47 +29,6 @@ const {
 
 const { upload, createFolder, deleteFile, deleteFiles, rename } = useS3(toRef(props, 'bucket'))
 const toast = useToast()
-const overlay = useOverlay()
-
-const alertModal = overlay.create(LazyAlertModal)
-const inputModal = overlay.create(LazyInputModal)
-
-async function openConfirmDialog(options: {
-	title: string
-	description: string
-	destructive?: boolean
-}): Promise<boolean> {
-	return new Promise((resolve) => {
-		alertModal.open({
-			title: options.title,
-			description: options.description,
-			icon: 'i-ph-trash',
-			destructive: options.destructive ?? false,
-			onConfirm: () => {
-				resolve(true)
-			},
-		})
-	})
-}
-
-async function openInputDialog(options: {
-	title: string
-	description: string
-	icon?: string
-	placeholder?: string
-}): Promise<string | null> {
-	return new Promise((resolve) => {
-		inputModal.open({
-			title: options.title,
-			description: options.description,
-			icon: options.icon || 'i-ph-folder-simple-plus',
-			placeholder: options.placeholder || 'Name',
-			onConfirm: (value: string) => {
-				resolve(value)
-			},
-		})
-	})
-}
 
 async function handleCreateFolder() {
 	const folderName = await openInputDialog({

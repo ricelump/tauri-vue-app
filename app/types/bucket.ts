@@ -6,6 +6,7 @@ export const bucketSchema = z.object({
 		.string()
 		.min(1)
 		.regex(/^[a-z0-9-]+$/),
+	displayName: z.string().optional(),
 	endpoint: z.url(),
 	region: z.string().min(1),
 	accessKey: z.string().min(1),

@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { LazyBucketConfigModal, LazySettingsModal } from '#components'
+import { LazyBucketConfigFormModal, LazySettingsModal } from '#components'
 import type { DropdownMenuItem } from '@nuxt/ui'
 
-const { buckets, currentBucket, hasBuckets, selectBucket } = useBuckets()
+const { buckets, currentBucket, selectBucket } = useBuckets()
 const overlay = useOverlay()
-const addBucketModal = overlay.create(LazyBucketConfigModal)
+const addBucketModal = overlay.create(LazyBucketConfigFormModal)
 const settingsModal = overlay.create(LazySettingsModal)
 
 const items = computed<DropdownMenuItem[]>(() => [
 	...buckets.value.map((bucket) => ({
-		label: bucket.bucketName,
+		label: bucket.displayName ?? bucket.bucketName,
 		value: bucket.id,
-		avatar: { alt: bucket.bucketName.toUpperCase() },
+		avatar: { alt: bucket.displayName?.toUpperCase() ?? bucket.bucketName.toUpperCase() },
 		type: 'checkbox' as const,
 		checked: bucket.id === currentBucket.value?.id,
 		onUpdateChecked() {
-			selectBucket(bucket.id)
+			selectBucket(bucket.id!)
 		},
 		onSelect(e: Event) {
 			e.preventDefault()
@@ -31,8 +31,8 @@ const items = computed<DropdownMenuItem[]>(() => [
 	},
 	{
 		label: $t('bucket.manage'),
-		icon: 'i-ph-cube',
-		onClick: () => settingsModal.open(),
+		icon: 'i-ph-hard-drives',
+		onClick: () => settingsModal.open({ activeTab: 'buckets' }),
 	},
 ])
 </script>
@@ -40,7 +40,7 @@ const items = computed<DropdownMenuItem[]>(() => [
 <template>
 	<UDropdownMenu :items="items" :ui="{ content: 'min-w-48' }">
 		<UButton
-			:label="currentBucket?.bucketName || $t('bucket.select')"
+			:label="currentBucket?.displayName || currentBucket?.bucketName || $t('bucket.select')"
 			color="neutral"
 			variant="ghost"
 			trailing-icon="i-ph-caret-up-down"

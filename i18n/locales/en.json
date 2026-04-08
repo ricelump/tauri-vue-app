@@ -10,12 +10,14 @@
 		}
 	},
 	"bucket": {
-		"label": "Bucket",
+		"label": "Buckets",
 		"add": "Add Bucket",
+		"edit": "Edit Bucket",
 		"select": "Select Bucket",
 		"manage": "Manage Buckets",
 		"fields": {
 			"bucketName": "Bucket Name",
+			"displayName": "Display Name",
 			"endpoint": "Endpoint",
 			"region": "Region",
 			"accessKey": "Access Key ID",

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { LazyBucketConfigModal } from '#components'
+import { LazyBucketConfigFormModal } from '#components'
 
 const appConfig = useAppConfig()
 const overlay = useOverlay()
 
-const modal = overlay.create(LazyBucketConfigModal)
+const modal = overlay.create(LazyBucketConfigFormModal)
 </script>
 
 <template>
