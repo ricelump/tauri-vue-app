@@ -5,6 +5,8 @@ import * as tauriWebviewWindow from '@tauri-apps/api/webviewWindow'
 import * as tauriWindow from '@tauri-apps/api/window'
 import * as tauriAutoStart from '@tauri-apps/plugin-autostart'
 import * as tauriOs from '@tauri-apps/plugin-os'
+import * as tauriDialog from '@tauri-apps/plugin-dialog'
+import * as tauriUpload from '@tauri-apps/plugin-upload'
 import * as tauriProcess from '@tauri-apps/plugin-process'
 import * as tauriStore from '@tauri-apps/plugin-store'
 import * as tauriGlobalShortcut from '@tauri-apps/plugin-global-shortcut'
@@ -24,6 +26,8 @@ const tauriModules = [
 	},
 	{ module: tauriOs, prefix: 'Os', importPath: '@tauri-apps/plugin-os' },
 	{ module: tauriStore, prefix: 'Store', importPath: '@tauri-apps/plugin-store' },
+	{ module: tauriDialog, prefix: 'Dialog', importPath: '@tauri-apps/plugin-dialog' },
+	{ module: tauriUpload, prefix: 'Upload', importPath: '@tauri-apps/plugin-upload' },
 	{ module: tauriAutoStart, prefix: 'AutoStart', importPath: '@tauri-apps/plugin-autostart' },
 	{ module: tauriTray, prefix: 'Tray', importPath: '@tauri-apps/api/tray' },
 	{ module: tauriMenu, prefix: 'Menu', importPath: '@tauri-apps/api/menu' },

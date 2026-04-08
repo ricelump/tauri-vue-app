@@ -12,6 +12,8 @@ const emit = defineEmits<{
 	'row-click': [e: Event, row: TableRow<BucketFile>]
 	delete: [file: BucketFile]
 	rename: [file: BucketFile]
+	download: [file: BucketFile]
+	'copy-url': [file: BucketFile]
 }>()
 
 const UCheckbox = resolveComponent('UCheckbox')
@@ -83,9 +85,16 @@ function getContextMenuItems(row: TableRow<BucketFile>): DropdownMenuItem[][] {
 				onSelect: () => emit('select', file),
 			},
 			{
+				label: 'Copy URL',
+				icon: 'i-ph-link-simple',
+				disabled: file.isDirectory,
+				onSelect: () => emit('copy-url', file),
+			},
+			{
 				label: 'Download',
 				icon: 'i-ph-download-simple',
 				disabled: file.isDirectory,
+				onSelect: () => emit('download', file),
 			},
 		],
 		[

@@ -28,7 +28,9 @@ const {
 } = useBucketFiles(toRef(props, 'bucket'))
 
 const { upload, createFolder, deleteFile, deleteFiles, rename } = useS3(toRef(props, 'bucket'))
+
 const toast = useToast()
+const { copy } = useClipboard()
 
 async function handleCreateFolder() {
 	const folderName = await openInputDialog({
@@ -135,18 +137,10 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 			try {
 				const success = await upload(key, file, file.type)
 				if (success) {
-					toast.add({
-						title: `${file.name} uploaded`,
-						color: 'success',
-						icon: 'i-ph-check-circle',
-					})
+					toast.add({ title: `${file.name} uploaded`, color: 'success', icon: 'i-ph-check-circle' })
 				} else throw new Error('Upload failed')
 			} catch {
-				toast.add({
-					title: `${file.name} failed`,
-					color: 'error',
-					icon: 'i-ph-warning-circle',
-				})
+				toast.add({ title: `${file.name} failed`, color: 'error', icon: 'i-ph-warning-circle' })
 			}
 		}),
 	)
@@ -154,6 +148,25 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 	await refresh()
 
 	if (fileInputRef.value) fileInputRef.value.value = ''
+}
+
+function handleDownload(file: BucketFile) {
+	const url = getPublicUrl(file, props.bucket)
+	if (!url) {
+		toast.add({ title: 'Download unavailable', color: 'error' })
+		return
+	}
+	downloadFile(url, file.name)
+}
+
+function handleCopyUrl(file: BucketFile) {
+	const url = getPublicUrl(file, props.bucket)
+	if (!url) {
+		toast.add({ title: 'URL unavailable', color: 'error' })
+		return
+	}
+	copy(url)
+	toast.add({ title: 'URL copied', color: 'success' })
 }
 
 function onFileClick(file: BucketFile) {
@@ -211,6 +224,8 @@ function openFilePicker() {
 			@row-click="onRowClick"
 			@rename="handleRenameFile"
 			@delete="handleDeleteFile"
+			@download="handleDownload"
+			@copy-url="handleCopyUrl"
 		/>
 	</div>
 </template>
