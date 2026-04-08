@@ -67,8 +67,7 @@ const columns: TableColumn<BucketFile>[] = [
 		id: 'actions',
 		meta: {
 			class: {
-				th: 'w-10',
-				td: 'w-10 text-right',
+				td: 'text-right',
 			},
 		},
 	},
@@ -136,7 +135,7 @@ defineExpose({
 			:data="files"
 			:columns="columns"
 			:loading="loading"
-			:ui="{ th: 'py-3', td: 'py-3', separator: 'bg-border' }"
+			:ui="{ th: 'py-2.5 pr-1.5', td: 'py-2 pr-1.5', separator: 'bg-border' }"
 			sticky
 			@select="onSelect"
 			@contextmenu="onContextmenu"
@@ -164,16 +163,9 @@ defineExpose({
 			</template>
 
 			<template #actions-cell="{ row }">
-				<div class="text-right">
-					<UDropdownMenu :items="getContextMenuItems(row)">
-						<UButton
-							icon="i-ph-dots-three-vertical-bold"
-							color="neutral"
-							variant="ghost"
-							size="sm"
-						/>
-					</UDropdownMenu>
-				</div>
+				<UDropdownMenu :items="getContextMenuItems(row)">
+					<UButton icon="i-ph-dots-three-vertical-bold" color="neutral" variant="ghost" size="sm" />
+				</UDropdownMenu>
 			</template>
 		</UTable>
 	</UContextMenu>

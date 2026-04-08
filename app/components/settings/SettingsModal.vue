@@ -8,40 +8,39 @@ const { settings, $reset } = useSettings()
 const activeTab = ref(props.activeTab || 'general')
 
 const items = [
-	{
-		label: $t('settings.general.label'),
-		icon: 'i-ph-gear-fine',
-		value: 'general',
-		slot: 'general',
-	},
-	{
-		label: $t('settings.appearance.label'),
-		icon: 'i-ph-palette',
-		value: 'appearance',
-		slot: 'appearance',
-	},
-	{ label: $t('bucket.label'), icon: 'i-ph-hard-drives', value: 'buckets', slot: 'buckets' },
-	{
-		label: $t('settings.shortcuts.label'),
-		icon: 'i-ph-command',
-		value: 'shortcuts',
-		slot: 'shortcuts',
-	},
-	{ label: $t('settings.about.label'), icon: 'i-ph-info', value: 'about', slot: 'about' },
+	{ label: $t('settings.general.label'), icon: 'i-ph-gear-fine', value: 'general' },
+	{ label: $t('settings.appearance.label'), icon: 'i-ph-palette', value: 'appearance' },
+	{ label: $t('bucket.label'), icon: 'i-ph-hard-drives', value: 'buckets' },
+	// { label: $t('settings.shortcuts.label'), icon: 'i-ph-command', value: 'shortcuts' },
+	{ label: $t('settings.about.label'), icon: 'i-ph-info', value: 'about' },
 ]
 </script>
 
 <template>
-	<ResponsiveModal>
-		<template #body="{ close }">
+	<ResponsiveModal :closeIcon="true">
+		<template #header="{ close }">
 			<UTabs
 				v-model="activeTab"
 				:items="items"
+				:content="false"
 				color="neutral"
-				variant="link"
-				:ui="{ content: 'mt-4 flex flex-col gap-1' }"
-			>
-				<template #general>
+				:ui="{
+					list: 'bg-muted',
+					indicator: 'bg-accented',
+					trigger: 'data-[state=active]:text-highlighted',
+				}"
+			/>
+			<UButton
+				icon="i-ph-x"
+				color="neutral"
+				variant="ghost"
+				class="absolute inset-e-4 top-4 hidden md:flex"
+				@click="close"
+			/>
+		</template>
+		<template #body>
+			<div class="flex flex-col gap-1">
+				<template v-if="activeTab === 'general'">
 					<SettingsItem :label="$t('settings.general.language')" icon="i-ph-globe-simple-duotone">
 						<SettingsLocaleSelect v-model="settings.locale" />
 					</SettingsItem>
@@ -67,7 +66,7 @@ const items = [
 					</SettingsItem>
 				</template>
 
-				<template #appearance>
+				<template v-if="activeTab === 'appearance'">
 					<SettingsItem
 						:label="$t('settings.appearance.colorMode.label')"
 						icon="i-ph-circle-half-duotone"
@@ -82,11 +81,11 @@ const items = [
 					</SettingsItem>
 				</template>
 
-				<template #buckets>
+				<template v-if="activeTab === 'buckets'">
 					<BucketList />
 				</template>
 
-				<template #shortcuts>
+				<template v-if="activeTab === 'shortcuts'">
 					<SettingsItem
 						v-if="isTauri"
 						:label="$t('settings.shortcuts.toggleWindow')"
@@ -97,14 +96,14 @@ const items = [
 					<UEmpty v-else :title="$t('settings.shortcuts.unavailable')" icon="i-ph-command-bold" />
 				</template>
 
-				<template #about>
+				<template v-if="activeTab === 'about'">
 					<SettingsAbout />
 				</template>
-
-				<template #list-trailing>
-					<UButton icon="i-ph-x" color="neutral" variant="ghost" class="ml-auto" @click="close" />
-				</template>
-			</UTabs>
+			</div>
+			<!--
+			<template #list-trailing>
+				<UButton icon="i-ph-x" color="neutral" variant="ghost" class="ml-auto" @click="close" />
+			</template> -->
 		</template>
 	</ResponsiveModal>
 </template>

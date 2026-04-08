@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import appIcon from '~/assets/icon.svg'
 
-const version = isTauri ? await useTauriAppGetVersion() : '0.0.0'
+const version = isTauri ? await useTauriAppGetVersion() : 'Web'
 
 const appConfig = useAppConfig()
 </script>

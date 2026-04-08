@@ -45,6 +45,28 @@ export default defineAppConfig({
 				content: 'min-w-fit h-full',
 			},
 		},
+		modal: {
+			slots: {
+				overlay: 'backdrop-blur-xs',
+				footer: 'bg-muted dark:bg-muted/20',
+			},
+			variants: {
+				overlay: {
+					true: {
+						overlay: 'bg-black/10 dark:bg-black/20',
+					},
+				},
+			},
+		},
+		breadcrumb: {
+			variants: {
+				active: {
+					true: {
+						link: 'text-highlighted font-normal',
+					},
+				},
+			},
+		},
 		icons: {
 			arrowDown: 'i-ph-arrow-down',
 			arrowLeft: 'i-ph-arrow-left',

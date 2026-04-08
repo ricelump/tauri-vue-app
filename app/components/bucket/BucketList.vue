@@ -31,22 +31,20 @@ async function handleDelete(bucket: Bucket) {
 </script>
 
 <template>
-	<div class="space-y-2">
-		<SettingsItem
-			v-for="bucket in buckets"
-			:key="bucket.id"
-			:label="bucket.displayName || bucket.bucketName"
-			:description="bucket.endpoint"
-		>
-			<div class="flex gap-0.5">
-				<UButton
-					icon="i-ph-pencil-simple"
-					color="neutral"
-					variant="ghost"
-					@click="handleEdit(bucket)"
-				/>
-				<UButton icon="i-ph-trash" color="error" variant="ghost" @click="handleDelete(bucket)" />
-			</div>
-		</SettingsItem>
-	</div>
+	<SettingsItem
+		v-for="bucket in buckets"
+		:key="bucket.id"
+		:label="bucket.displayName || bucket.bucketName"
+		:description="bucket.endpoint"
+	>
+		<div class="flex gap-0.5">
+			<UButton
+				icon="i-ph-pencil-simple"
+				color="neutral"
+				variant="ghost"
+				@click="handleEdit(bucket)"
+			/>
+			<UButton icon="i-ph-trash" color="error" variant="ghost" @click="handleDelete(bucket)" />
+		</div>
+	</SettingsItem>
 </template>

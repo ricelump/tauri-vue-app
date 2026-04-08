@@ -20,7 +20,7 @@ function handleConfirm() {
 </script>
 
 <template>
-	<UModal :close="{ onClick: () => emit('close') }" :ui="{ footer: 'bg-muted dark:bg-muted/50' }">
+	<UModal :close="{ onClick: () => emit('close') }">
 		<template #header>
 			<div class="flex w-full flex-col items-center text-center">
 				<div

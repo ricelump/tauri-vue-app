@@ -31,6 +31,9 @@ function close() {
 		:class="modalClass"
 		:ui="{ footer: 'justify-end' }"
 	>
+		<template v-if="$slots.header" #header="{ close: modalClose }">
+			<slot name="header" :close="modalClose" />
+		</template>
 		<template #body="{ close: modalClose }">
 			<slot name="body" :close="modalClose" />
 		</template>
@@ -40,6 +43,9 @@ function close() {
 	</UModal>
 
 	<UDrawer v-else :title="props.title" :description="props.description" :class="drawerClass">
+		<template v-if="$slots.header" #footer>
+			<slot name="header" :close="close" />
+		</template>
 		<template #body>
 			<slot name="body" :close="close" />
 		</template>

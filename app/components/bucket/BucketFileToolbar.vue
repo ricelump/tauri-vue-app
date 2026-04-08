@@ -55,11 +55,10 @@ const bulkActions: DropdownMenuItem[][] = [
 
 			<UBreadcrumb
 				:items="[
-					{ icon: 'i-ph-house', to: undefined, click: () => $emit('navigateTo', -1) },
+					{ icon: 'i-ph-house', onClick: () => $emit('navigateTo', -1) },
 					...breadcrumbs.map((crumb, index) => ({
 						label: crumb,
-						to: undefined,
-						click: () => $emit('navigateTo', index),
+						onClick: () => $emit('navigateTo', index),
 					})),
 				]"
 			/>
