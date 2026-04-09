@@ -25,6 +25,27 @@
 			"publicUrl": "Public URL"
 		}
 	},
+	"preset": {
+		"label": "Presets",
+		"image": "Image Preset",
+		"imageNone": "No Image Preset",
+		"none": "None",
+		"enabled": "Enabled",
+		"disabled": "Disabled",
+		"add": "Add Preset",
+		"edit": "Edit Preset",
+		"manage": "Manage Presets",
+		"noImagePresets": "No image presets configured",
+		"fields": {
+			"name": "Name",
+			"enabled": "Enable this preset",
+			"format": "Format",
+			"quality": "Quality",
+			"maxWidth": "Max Width",
+			"maxHeight": "Max Height",
+			"fit": "Fit Mode"
+		}
+	},
 	"settings": {
 		"label": "Settings",
 		"general": {

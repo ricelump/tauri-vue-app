@@ -3,7 +3,7 @@ import type { Bucket } from '~/types/bucket'
 const buckets = ref<Bucket[]>([])
 const currentBucketId = ref<string | null>(null)
 const loaded = ref(false)
-const initializing = ref(false)
+let initializing = false
 
 const { encrypt, decrypt } = useCrypto()
 
@@ -111,12 +111,12 @@ export function useBuckets() {
 	const hasBuckets = computed(() => buckets.value.length > 0)
 
 	async function init() {
-		if (initializing.value || loaded.value) return
-		initializing.value = true
+		if (initializing || loaded.value) return
+		initializing = true
 		await loadBuckets()
 	}
 
-	if (!loaded.value && !initializing.value) init()
+	if (!loaded.value && !initializing) init()
 
 	return {
 		buckets: readonly(buckets),

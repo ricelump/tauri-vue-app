@@ -79,6 +79,7 @@ const bulkActions: DropdownMenuItem[][] = [
 				variant="ghost"
 				@click="$emit('upload')"
 			/>
+			<PresetSelectDropdownMenu />
 			<UTooltip text="Create Folder">
 				<UButton
 					icon="i-ph-folder-simple-plus"

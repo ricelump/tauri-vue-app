@@ -11,6 +11,7 @@ const items = [
 	{ label: $t('settings.general.label'), icon: 'i-ph-gear-fine', value: 'general' },
 	{ label: $t('settings.appearance.label'), icon: 'i-ph-palette', value: 'appearance' },
 	{ label: $t('bucket.label'), icon: 'i-ph-hard-drives', value: 'buckets' },
+	{ label: $t('preset.label'), icon: 'i-ph-faders-horizontal', value: 'presets' },
 	// { label: $t('settings.shortcuts.label'), icon: 'i-ph-command', value: 'shortcuts' },
 	{ label: $t('settings.about.label'), icon: 'i-ph-info', value: 'about' },
 ]
@@ -83,6 +84,10 @@ const items = [
 
 				<template v-if="activeTab === 'buckets'">
 					<BucketList />
+				</template>
+
+				<template v-if="activeTab === 'presets'">
+					<PresetList />
 				</template>
 
 				<template v-if="activeTab === 'shortcuts'">

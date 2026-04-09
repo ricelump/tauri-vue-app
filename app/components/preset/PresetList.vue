@@ -1,0 +1,62 @@
+<script setup lang="ts">
+import { LazyPresetConfigFormModal } from '#components'
+import type { ImagePreset, Preset } from '~/types/preset'
+
+const { imagePresets, currentImagePreset, removeImagePreset } = usePreset()
+const toast = useToast()
+const overlay = useOverlay()
+const editImageModal = overlay.create(LazyPresetConfigFormModal)
+
+function handleAddImage() {
+	editImageModal.open({ type: 'image' })
+}
+
+function handleEditImage(preset: Preset<ImagePreset>) {
+	editImageModal.open({ type: 'image', preset })
+}
+
+async function handleDeleteImage(preset: Preset<ImagePreset>) {
+	const confirmed = await openConfirmDialog({
+		title: `Delete "${preset.name}"?`,
+		description: 'This action cannot be undone. The preset will be permanently removed.',
+		destructive: true,
+	})
+	if (!confirmed) return
+
+	removeImagePreset(preset.id)
+	toast.add({ title: 'Preset removed', color: 'success' })
+}
+</script>
+
+<template>
+	<div>
+		<div class="mb-2 flex items-center justify-between">
+			<span class="text-sm font-medium">{{ $t('preset.image') }}</span>
+			<UButton icon="i-ph-plus" color="neutral" variant="ghost" size="xs" @click="handleAddImage" />
+		</div>
+		<SettingsItem
+			v-for="preset in imagePresets"
+			:key="preset.id"
+			:label="preset.name"
+			:icon="currentImagePreset?.id === preset.id ? 'i-ph-check-circle' : undefined"
+		>
+			<div class="flex gap-0.5">
+				<UButton
+					icon="i-ph-pencil-simple"
+					color="neutral"
+					variant="ghost"
+					@click="handleEditImage(preset)"
+				/>
+				<UButton
+					icon="i-ph-trash"
+					color="error"
+					variant="ghost"
+					@click="handleDeleteImage(preset)"
+				/>
+			</div>
+		</SettingsItem>
+		<div v-if="imagePresets.length === 0" class="text-sm text-muted">
+			{{ $t('preset.noImagePresets') }}
+		</div>
+	</div>
+</template>
