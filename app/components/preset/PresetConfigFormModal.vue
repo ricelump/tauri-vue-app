@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { FormSubmitEvent } from '@nuxt/ui'
 import type { ImagePreset, Preset } from '~/types/preset'
 
 const props = defineProps<{
@@ -11,13 +10,22 @@ const isEdit = computed(() => !!props.preset)
 
 const isImage = computed(() => props.type === 'image')
 
+const editConfig = props.preset?.config as ImagePreset | undefined
+
+const enableCompress = ref(
+	isEdit.value ? (editConfig?.format != null || editConfig?.quality != null) : true,
+)
+const enableResize = ref(
+	isEdit.value ? (editConfig?.maxWidth != null || editConfig?.maxHeight != null) : true,
+)
+
 const state = reactive({
 	name: props.preset?.name ?? '',
 	...(isImage.value && {
-		format: (props.preset?.config as ImagePreset)?.format ?? 'webp',
-		quality: (props.preset?.config as ImagePreset)?.quality ?? 85,
-		maxWidth: (props.preset?.config as ImagePreset)?.maxWidth ?? 1920,
-		maxHeight: (props.preset?.config as ImagePreset)?.maxHeight ?? 1080,
+		format: editConfig?.format ?? 'webp',
+		quality: editConfig?.quality ?? 85,
+		maxWidth: editConfig?.maxWidth ?? 1920,
+		maxHeight: editConfig?.maxHeight ?? 1080,
 	}),
 })
 
@@ -29,14 +37,21 @@ const modal = overlay.create(useTemplateRef('modalRef'))
 
 async function onSubmit() {
 	try {
-		const config =
-			isImage.value &&
-			({
-				format: state.format,
-				quality: state.quality,
-				maxWidth: state.maxWidth,
-				maxHeight: state.maxHeight,
-			} as ImagePreset)
+		let config: ImagePreset | false = false
+
+		if (isImage.value) {
+			config = {}
+
+			if (enableCompress.value) {
+				config.format = state.format as ImagePreset['format']
+				config.quality = Number(state.quality)
+			}
+
+			if (enableResize.value) {
+				config.maxWidth = Number(state.maxWidth)
+				config.maxHeight = Number(state.maxHeight)
+			}
+		}
 
 		if (isEdit.value && props.preset) {
 			if (isImage.value)
@@ -70,22 +85,30 @@ defineExpose({ open })
 					<UInput v-model="state.name" />
 				</UFormField>
 				<template v-if="isImage">
-					<div class="grid grid-cols-2 gap-4">
-						<UFormField :label="$t('preset.fields.format')" name="format" required>
-							<USelect v-model="state.format" :items="['webp', 'jpeg', 'png', 'avif']" />
-						</UFormField>
-						<UFormField :label="$t('preset.fields.quality')" name="quality" required>
-							<UInput v-model="state.quality" type="number" />
-						</UFormField>
-						<UFormField :label="$t('preset.fields.maxWidth')" name="maxWidth" required>
-							<UInput v-model="state.maxWidth" type="number" />
-						</UFormField>
-						<UFormField :label="$t('preset.fields.maxHeight')" name="maxHeight" required>
-							<UInput v-model="state.maxHeight" type="number" />
-						</UFormField>
-						<!-- <UFormField :label="$t('preset.fields.fit')" name="fit" required>
-							<USelect v-model="state.fit" :items="['inside', 'outside', 'cover', 'contain']" />
-						</UFormField> -->
+					<!-- Compress toggle -->
+					<div class="space-y-3">
+						<UCheckbox v-model="enableCompress" :label="$t('preset.options.compress')" />
+						<div v-if="enableCompress" class="grid grid-cols-2 gap-4 pl-6">
+							<UFormField :label="$t('preset.fields.format')" name="format">
+								<USelect v-model="state.format" :items="['webp', 'jpeg', 'png', 'avif']" />
+							</UFormField>
+							<UFormField :label="$t('preset.fields.quality')" name="quality">
+								<UInput v-model="state.quality" type="number" :min="1" :max="100" />
+							</UFormField>
+						</div>
+					</div>
+
+					<!-- Resize toggle -->
+					<div class="space-y-3">
+						<UCheckbox v-model="enableResize" :label="$t('preset.options.resize')" />
+						<div v-if="enableResize" class="grid grid-cols-2 gap-4 pl-6">
+							<UFormField :label="$t('preset.fields.maxWidth')" name="maxWidth">
+								<UInput v-model="state.maxWidth" type="number" :min="1" />
+							</UFormField>
+							<UFormField :label="$t('preset.fields.maxHeight')" name="maxHeight">
+								<UInput v-model="state.maxHeight" type="number" :min="1" />
+							</UFormField>
+						</div>
 					</div>
 				</template>
 			</UForm>

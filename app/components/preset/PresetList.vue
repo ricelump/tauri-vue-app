@@ -34,27 +34,24 @@ async function handleDeleteImage(preset: Preset<ImagePreset>) {
 			<span class="text-sm font-medium">{{ $t('preset.image') }}</span>
 			<UButton icon="i-ph-plus" color="neutral" variant="ghost" size="xs" @click="handleAddImage" />
 		</div>
-		<SettingsItem
-			v-for="preset in imagePresets"
-			:key="preset.id"
-			:label="preset.name"
-			:icon="currentImagePreset?.id === preset.id ? 'i-ph-check-circle' : undefined"
-		>
-			<div class="flex gap-0.5">
-				<UButton
-					icon="i-ph-pencil-simple"
-					color="neutral"
-					variant="ghost"
-					@click="handleEditImage(preset)"
-				/>
-				<UButton
-					icon="i-ph-trash"
-					color="error"
-					variant="ghost"
-					@click="handleDeleteImage(preset)"
-				/>
-			</div>
-		</SettingsItem>
+		<div class="flex flex-col gap-1">
+			<SettingsItem v-for="preset in imagePresets" :key="preset.id" :label="preset.name">
+				<div class="flex gap-0.5">
+					<UButton
+						icon="i-ph-pencil-simple"
+						color="neutral"
+						variant="ghost"
+						@click="handleEditImage(preset)"
+					/>
+					<UButton
+						icon="i-ph-trash"
+						color="error"
+						variant="ghost"
+						@click="handleDeleteImage(preset)"
+					/>
+				</div>
+			</SettingsItem>
+		</div>
 		<div v-if="imagePresets.length === 0" class="text-sm text-muted">
 			{{ $t('preset.noImagePresets') }}
 		</div>

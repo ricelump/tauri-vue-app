@@ -44,6 +44,10 @@
 			"maxWidth": "Max Width",
 			"maxHeight": "Max Height",
 			"fit": "Fit Mode"
+		},
+		"options": {
+			"compress": "Convert & compress",
+			"resize": "Resize"
 		}
 	},
 	"settings": {

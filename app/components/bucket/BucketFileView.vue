@@ -28,7 +28,7 @@ const {
 } = useBucketFiles(toRef(props, 'bucket'))
 
 const { upload, createFolder, deleteFile, deleteFiles, rename } = useS3(toRef(props, 'bucket'))
-
+const { currentImagePreset } = usePreset()
 const toast = useToast()
 const { copy } = useClipboard()
 
@@ -111,13 +111,19 @@ async function handleDeleteAll() {
 	const keys = selectedFiles.map((f: BucketFile) => f.key)
 	const success = await deleteFiles(keys)
 	if (success) {
-		toast.add({
-			title: `Deleted ${keys.length} item${keys.length > 1 ? 's' : ''}`,
-			color: 'success',
-		})
+		// toast.add({
+		// 	title: `Deleted ${keys.length} item${keys.length > 1 ? 's' : ''}`,
+		// 	color: 'success',
+		// })
 		await refresh()
 		tableRef.value?.clearSelection()
 	} else toast.add({ title: 'Batch deletion failed', color: 'error' })
+}
+
+async function processFile(file: File): Promise<File> {
+	if (file.type.startsWith('image/') && currentImagePreset.value)
+		return processImage(file, currentImagePreset.value.config)
+	return file
 }
 
 async function handleFileUpload(selectedFiles: FileList | null) {
@@ -133,14 +139,15 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 
 	await Promise.all(
 		files.map(async (file) => {
-			const key = `${currentPath.value}${file.name}`
+			const processedFile = await processFile(file)
+			const filename = processedFile.name
+			const key = `${currentPath.value}${filename}`
+
 			try {
-				const success = await upload(key, file, file.type)
-				if (success) {
-					toast.add({ title: `${file.name} uploaded`, color: 'success', icon: 'i-ph-check-circle' })
-				} else throw new Error('Upload failed')
+				const success = await upload(key, processedFile, processedFile.type)
+				if (!success) throw new Error('Upload failed')
 			} catch {
-				toast.add({ title: `${file.name} failed`, color: 'error', icon: 'i-ph-warning-circle' })
+				toast.add({ title: `${filename} failed`, color: 'error', icon: 'i-ph-warning-circle' })
 			}
 		}),
 	)

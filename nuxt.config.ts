@@ -70,6 +70,15 @@ export default defineNuxtConfig({
 				ignored: ['**/src-tauri/**'],
 			},
 		},
+		optimizeDeps: {
+			exclude: [
+				'@jsquash/jpeg',
+				'@jsquash/png',
+				'@jsquash/webp',
+				'@jsquash/avif',
+				'@jsquash/resize',
+			],
+		},
 	},
 	devServer: {
 		port: 1420,
@@ -92,6 +101,9 @@ export default defineNuxtConfig({
 	},
 	nitro: {
 		preset: 'static',
+		wasm: {
+			lazy: false,
+		},
 	},
 	devtools: {
 		enabled: false,
