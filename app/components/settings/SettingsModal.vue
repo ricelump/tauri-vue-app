@@ -45,6 +45,13 @@ const items = [
 					<SettingsItem :label="$t('settings.general.language')" icon="i-ph-globe-simple-duotone">
 						<SettingsLocaleSelect v-model="settings.locale" />
 					</SettingsItem>
+					<SettingsItem
+						:label="$t('settings.general.autoCopy.label')"
+						icon="i-ph-copy-duotone"
+						:description="$t('settings.general.autoCopy.description')"
+					>
+						<USwitch v-model="settings.autoCopy" />
+					</SettingsItem>
 					<template v-if="isTauri">
 						<SettingsItem :label="$t('settings.general.autoStart')" icon="i-ph-power-duotone">
 							<USwitch v-model="settings.autoStart" />

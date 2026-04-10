@@ -2,6 +2,7 @@ import type { Settings } from '~/types/settings'
 
 const defaultSettings: Settings = {
 	locale: 'en',
+	autoCopy: false,
 	autoStart: false,
 	colorMode: 'system',
 	accentColor: 'blue',

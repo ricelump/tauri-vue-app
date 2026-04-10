@@ -56,6 +56,10 @@
 			"label": "General",
 			"language": "Language",
 			"autoStart": "Launch on Startup",
+			"autoCopy": {
+				"label": "Auto Copy URL",
+				"description": "Copy URL to clipboard after single file upload"
+			},
 			"closeToHide": {
 				"label": "Minimize to Tray on Close",
 				"description": "Keep the app running in the background when the window is closed"

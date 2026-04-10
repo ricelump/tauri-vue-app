@@ -29,6 +29,7 @@ const {
 
 const { upload, createFolder, deleteFile, deleteFiles, rename } = useS3(toRef(props, 'bucket'))
 const { currentImagePreset } = usePreset()
+const { settings } = useSettings()
 const toast = useToast()
 const { copy } = useClipboard()
 
@@ -111,10 +112,6 @@ async function handleDeleteAll() {
 	const keys = selectedFiles.map((f: BucketFile) => f.key)
 	const success = await deleteFiles(keys)
 	if (success) {
-		// toast.add({
-		// 	title: `Deleted ${keys.length} item${keys.length > 1 ? 's' : ''}`,
-		// 	color: 'success',
-		// })
 		await refresh()
 		tableRef.value?.clearSelection()
 	} else toast.add({ title: 'Batch deletion failed', color: 'error' })
@@ -124,6 +121,14 @@ async function processFile(file: File): Promise<File> {
 	if (file.type.startsWith('image/') && currentImagePreset.value)
 		return processImage(file, currentImagePreset.value.config)
 	return file
+}
+
+function getPublicUrlFromKey(key: string): string | null {
+	if (!props.bucket) return null
+	const base = props.bucket.publicUrl || props.bucket.endpoint
+	if (!base) return null
+	const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base
+	return `${cleanBase}/${key}`
 }
 
 async function handleFileUpload(selectedFiles: FileList | null) {
@@ -137,6 +142,8 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 		icon: 'i-ph-upload-simple',
 	})
 
+	const uploadedKeys: string[] = []
+
 	await Promise.all(
 		files.map(async (file) => {
 			const processedFile = await processFile(file)
@@ -146,6 +153,7 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 			try {
 				const success = await upload(key, processedFile, processedFile.type)
 				if (!success) throw new Error('Upload failed')
+				uploadedKeys.push(key)
 			} catch {
 				toast.add({ title: `${filename} failed`, color: 'error', icon: 'i-ph-warning-circle' })
 			}
@@ -155,6 +163,11 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 	await refresh()
 
 	if (fileInputRef.value) fileInputRef.value.value = ''
+
+	if (files.length === 1 && uploadedKeys.length === 1 && settings.autoCopy) {
+		const url = getPublicUrlFromKey(uploadedKeys[0]!)
+		if (url) copy(url)
+	}
 }
 
 function handleDownload(file: BucketFile) {
