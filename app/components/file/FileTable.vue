@@ -100,12 +100,14 @@ function getContextMenuItems(row: TableRow<BucketFile>): DropdownMenuItem[][] {
 			{
 				label: 'Rename',
 				icon: 'i-ph-pencil-simple',
+				disabled: file.isDirectory,
 				onSelect: () => emit('rename', file),
 			},
 			{
 				label: 'Delete',
 				icon: 'i-ph-trash',
 				color: 'error',
+				disabled: file.isDirectory,
 				onSelect: () => emit('delete', file),
 			},
 		],
@@ -135,13 +137,12 @@ defineExpose({
 			:data="files"
 			:columns="columns"
 			:loading="loading"
-			:ui="{ th: 'py-2.5 pr-1.5', td: 'py-2 pr-1.5', separator: 'bg-border' }"
-			sticky
+			:ui="{ th: 'py-2 pr-1.5', td: 'py-2 pr-1.5', separator: 'bg-border' }"
 			@select="onSelect"
 			@contextmenu="onContextmenu"
 		>
 			<template #name-cell="{ row }">
-				<div class="flex items-center gap-2">
+				<div class="flex items-center gap-2 select-text">
 					<UIcon
 						:name="row.original.isDirectory ? 'i-ph-folder-simple' : 'i-ph-file'"
 						class="size-5"

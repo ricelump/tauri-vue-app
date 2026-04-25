@@ -5,6 +5,6 @@ const { currentBucket, hasBuckets } = useBuckets()
 <template>
 	<PageWelcome v-if="!hasBuckets" />
 	<div v-else>
-		<BucketFileView :bucket="currentBucket" />
+		<FileView :bucket="currentBucket" />
 	</div>
 </template>

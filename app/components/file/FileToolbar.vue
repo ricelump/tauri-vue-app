@@ -40,7 +40,7 @@ const bulkActions: DropdownMenuItem[][] = [
 
 <template>
 	<div
-		class="flex items-center justify-between gap-2 overflow-x-auto border-b border-default px-2 py-1.5"
+		class="sticky top-(--ui-header-height) z-50 flex max-h-(--ui-header-height) items-center justify-between gap-2 overflow-x-auto border-y bg-default/75 px-2 py-1 backdrop-blur-sm"
 	>
 		<div class="flex items-center gap-3">
 			<UTooltip text="Navigate Up">

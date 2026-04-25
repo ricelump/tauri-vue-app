@@ -28,6 +28,7 @@ export async function openInputDialog(options: {
 	description: string
 	icon?: string
 	placeholder?: string
+	defaultValue?: string
 }): Promise<string | null> {
 	return new Promise((resolve) => {
 		inputModal.open({
@@ -35,6 +36,7 @@ export async function openInputDialog(options: {
 			description: options.description,
 			icon: options.icon || 'i-ph-folder-simple-plus',
 			placeholder: options.placeholder || 'Name',
+			defaultValue: options.defaultValue || '',
 			onConfirm: (value: string) => {
 				resolve(value)
 			},

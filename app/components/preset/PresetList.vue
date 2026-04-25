@@ -2,7 +2,7 @@
 import { LazyPresetConfigFormModal } from '#components'
 import type { ImagePreset, Preset } from '~/types/preset'
 
-const { imagePresets, currentImagePreset, removeImagePreset } = usePreset()
+const { imagePresets, removeImagePreset } = usePreset()
 const toast = useToast()
 const overlay = useOverlay()
 const editImageModal = overlay.create(LazyPresetConfigFormModal)

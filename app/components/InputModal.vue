@@ -4,6 +4,7 @@ interface Props {
 	description?: string
 	icon?: string
 	placeholder?: string
+	defaultValue?: string
 }
 
 const props = defineProps<Props>()
@@ -13,7 +14,7 @@ const emit = defineEmits<{
 	confirm: [value: string]
 }>()
 
-const inputValue = ref('')
+const inputValue = ref(props.defaultValue || '')
 
 function handleConfirm() {
 	emit('confirm', inputValue.value)
@@ -22,13 +23,6 @@ function handleConfirm() {
 
 function handleClose() {
 	emit('close')
-}
-
-function handleKeydown(e: KeyboardEvent) {
-	if (e.key === 'Enter') {
-		e.preventDefault()
-		handleConfirm()
-	}
 }
 </script>
 

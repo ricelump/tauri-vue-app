@@ -56,6 +56,7 @@ async function handleRenameFile(file: BucketFile) {
 		description: 'Enter the new name.',
 		icon: 'i-ph-pencil-simple',
 		placeholder: oldName,
+		defaultValue: oldName,
 	})
 	if (!newName || newName.trim() === '' || newName === oldName) return
 
@@ -210,7 +211,7 @@ function openFilePicker() {
 </script>
 
 <template>
-	<div class="relative flex flex-col border-y border-default">
+	<div class="relative flex flex-col">
 		<input
 			ref="fileInputRef"
 			type="file"
@@ -219,7 +220,7 @@ function openFilePicker() {
 			@change="handleFileUpload(($event.target as HTMLInputElement).files)"
 		/>
 
-		<BucketFileToolbar
+		<FileToolbar
 			:current-path="currentPath"
 			:breadcrumbs="breadcrumbs"
 			:has-selection="Object.keys(rowSelection).length > 0"
@@ -236,7 +237,7 @@ function openFilePicker() {
 
 		<DragDropZone @drop="handleFileUpload" />
 
-		<BucketFileTable
+		<FileTable
 			ref="tableRef"
 			:files="files"
 			:loading="loading"

@@ -4,3 +4,28 @@
 :root {
 	--ui-header-height: 2.7rem;
 }
+
+@layer base {
+	* {
+		@apply border-default;
+	}
+	html {
+		@apply no-scrollbar;
+	}
+	html,
+	body {
+		text-autospace: normal;
+	}
+}
+
+@utility corner-squircle {
+	corner-shape: squircle;
+}
+
+@utility no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
