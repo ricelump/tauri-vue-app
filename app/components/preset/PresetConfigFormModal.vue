@@ -6,17 +6,20 @@ const props = defineProps<{
 	preset?: Preset<ImagePreset> | null
 }>()
 
-const isEdit = computed(() => !!props.preset)
+const emit = defineEmits<{
+	close: []
+}>()
 
+const isEdit = computed(() => !!props.preset)
 const isImage = computed(() => props.type === 'image')
 
 const editConfig = props.preset?.config as ImagePreset | undefined
 
 const enableCompress = ref(
-	isEdit.value ? (editConfig?.format != null || editConfig?.quality != null) : true,
+	isEdit.value ? editConfig?.format != null || editConfig?.quality != null : true,
 )
 const enableResize = ref(
-	isEdit.value ? (editConfig?.maxWidth != null || editConfig?.maxHeight != null) : true,
+	isEdit.value ? editConfig?.maxWidth != null || editConfig?.maxHeight != null : true,
 )
 
 const state = reactive({
@@ -32,8 +35,6 @@ const state = reactive({
 const formRef = ref<{ submit: () => void }>()
 const toast = useToast()
 const { addImagePreset, updateImagePreset } = usePreset()
-const overlay = useOverlay()
-const modal = overlay.create(useTemplateRef('modalRef'))
 
 async function onSubmit() {
 	try {
@@ -64,33 +65,34 @@ async function onSubmit() {
 			toast.add({ title: 'Preset created', color: 'success' })
 		}
 
-		modal.close()
+		emit('close')
 	} catch {
 		toast.add({ title: 'Failed to save preset', color: 'error' })
 	}
 }
-
-function open() {
-	modal.open()
-}
-
-defineExpose({ open })
 </script>
 
 <template>
-	<ResponsiveModal ref="modalRef" :title="isEdit ? $t('preset.edit') : $t('preset.add')">
+	<UModal :dismissible="false" :close="{ onClick: () => emit('close') }">
+		<template #header>
+			<span class="font-semibold">{{ isEdit ? $t('preset.edit') : $t('preset.add') }}</span>
+		</template>
+
 		<template #body>
 			<UForm ref="formRef" :state="state" class="space-y-4" @submit="onSubmit">
 				<UFormField :label="$t('preset.fields.name')" name="name" required>
 					<UInput v-model="state.name" />
 				</UFormField>
 				<template v-if="isImage">
-					<!-- Compress toggle -->
 					<div class="space-y-3">
 						<UCheckbox v-model="enableCompress" :label="$t('preset.options.compress')" />
 						<div v-if="enableCompress" class="grid grid-cols-2 gap-4 pl-6">
 							<UFormField :label="$t('preset.fields.format')" name="format">
-								<USelect v-model="state.format" :items="['webp', 'jpeg', 'png', 'avif']" />
+								<USelect
+									v-model="state.format"
+									:items="['webp', 'jpeg', 'png', 'avif']"
+									class="w-full"
+								/>
 							</UFormField>
 							<UFormField :label="$t('preset.fields.quality')" name="quality">
 								<UInput v-model="state.quality" type="number" :min="1" :max="100" />
@@ -98,7 +100,6 @@ defineExpose({ open })
 						</div>
 					</div>
 
-					<!-- Resize toggle -->
 					<div class="space-y-3">
 						<UCheckbox v-model="enableResize" :label="$t('preset.options.resize')" />
 						<div v-if="enableResize" class="grid grid-cols-2 gap-4 pl-6">
@@ -113,8 +114,10 @@ defineExpose({ open })
 				</template>
 			</UForm>
 		</template>
+
 		<template #footer>
-			<UButton :label="$t('common.save')" loading-auto @click="formRef?.submit()" />
+			<UButton label="Cancel" color="neutral" variant="subtle" block @click="emit('close')" />
+			<UButton label="Save" block color="primary" @click="formRef?.submit()" />
 		</template>
-	</ResponsiveModal>
+	</UModal>
 </template>

@@ -15,35 +15,40 @@ const props = withDefaults(defineProps<Props>(), {
 
 const isDesktop = useMediaQuery('(min-width: 768px)')
 
-const emit = defineEmits<{ close: [] }>()
+const isOpen = defineModel<boolean>('open', { default: false })
 
 function close() {
-	emit('close')
+	isOpen.value = false
 }
 </script>
 
 <template>
 	<UModal
 		v-if="isDesktop"
+		v-model:open="isOpen"
 		:title="title"
-		:close="!!title"
-		:dismissible="false"
 		:class="modalClass"
 		:ui="{ footer: 'justify-end' }"
 	>
-		<template v-if="$slots.header" #header="{ close: modalClose }">
-			<slot name="header" :close="modalClose" />
+		<template v-if="$slots.header" #header>
+			<slot name="header" :close="close" />
 		</template>
-		<template #body="{ close: modalClose }">
-			<slot name="body" :close="modalClose" />
+		<template #body>
+			<slot name="body" :close="close" />
 		</template>
-		<template v-if="$slots.footer" #footer="{ close: modalClose }">
-			<slot name="footer" :close="modalClose" />
+		<template v-if="$slots.footer" #footer>
+			<slot name="footer" :close="close" />
 		</template>
 	</UModal>
 
-	<UDrawer v-else :title="props.title" :description="props.description" :class="drawerClass">
-		<template v-if="$slots.header" #footer>
+	<UDrawer
+		v-else
+		v-model:open="isOpen"
+		:title="title"
+		:description="description"
+		:class="drawerClass"
+	>
+		<template v-if="$slots.header" #header>
 			<slot name="header" :close="close" />
 		</template>
 		<template #body>

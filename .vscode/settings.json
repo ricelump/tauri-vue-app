@@ -1,15 +1,15 @@
 {
 	"editor.defaultFormatter": "oxc.oxc-vscode",
 	"editor.codeActionsOnSave": {
-		"source.fixAll.oxc": "always",
+		"source.fixAll.oxc": "always"
 	},
 	"files.associations": {
-		"*.css": "tailwindcss",
+		"*.css": "tailwindcss"
 	},
 	"editor.quickSuggestions": {
-		"strings": "on",
+		"strings": "on"
 	},
 	"tailwindCSS.classAttributes": ["class", "ui"],
 	"tailwindCSS.experimental.classRegex": [["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]],
-	"i18n-ally.localesPaths": ["i18n", "i18n/locales"],
+	"i18n-ally.localesPaths": ["i18n", "i18n/locales"]
 }

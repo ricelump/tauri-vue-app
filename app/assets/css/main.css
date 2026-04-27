@@ -8,6 +8,8 @@
 @layer base {
 	* {
 		@apply border-default;
+		scrollbar-width: thin;
+		scrollbar-color: var(--border-color-default) transparent;
 	}
 	html {
 		@apply no-scrollbar;
@@ -15,6 +17,16 @@
 	html,
 	body {
 		text-autospace: normal;
+	}
+	::-webkit-scrollbar {
+		width: 5px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		background: var(--border-color-default);
+		border-radius: 5px;
 	}
 }
 

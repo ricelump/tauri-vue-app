@@ -6,6 +6,10 @@ const props = defineProps<{
 	bucket?: Bucket | null
 }>()
 
+const emit = defineEmits<{
+	close: []
+}>()
+
 const isEdit = computed(() => !!props.bucket)
 
 const state = reactive<Partial<Bucket>>({
@@ -22,8 +26,6 @@ const formRef = ref<{ submit: () => void; validate: () => Promise<{ valid: boole
 const toast = useToast()
 const { test } = useS3()
 const { addBucket, updateBucket } = useBuckets()
-const overlay = useOverlay()
-const modal = overlay.create(useTemplateRef('modalRef'))
 
 async function handleTest() {
 	const result = await test(state as Bucket)
@@ -59,24 +61,22 @@ async function onSubmit(event?: FormSubmitEvent<Bucket>) {
 			})
 		}
 
-		modal.close()
-	} catch (err) {
+		emit('close')
+	} catch {
 		toast.add({
 			title: isEdit.value ? 'Failed to update bucket' : 'Failed to save bucket',
 			color: 'error',
 		})
 	}
 }
-
-function open() {
-	modal.open()
-}
-
-defineExpose({ open })
 </script>
 
 <template>
-	<ResponsiveModal ref="modalRef" :title="isEdit ? $t('bucket.edit') : $t('bucket.add')">
+	<UModal :dismissible="false" :close="{ onClick: () => emit('close') }">
+		<template #header>
+			<span class="font-semibold">{{ isEdit ? $t('bucket.edit') : $t('bucket.add') }}</span>
+		</template>
+
 		<template #body>
 			<UForm ref="formRef" :state="state" class="space-y-4" @submit="onSubmit">
 				<UFormField :label="$t('bucket.fields.bucketName')" name="bucketName" required>
@@ -102,15 +102,17 @@ defineExpose({ open })
 				</UFormField>
 			</UForm>
 		</template>
+
 		<template #footer>
+			<UButton label="Cancel" color="neutral" variant="subtle" block @click="emit('close')" />
 			<UButton
 				:label="$t('common.test')"
 				color="neutral"
 				variant="subtle"
-				loading-auto
+				block
 				@click="handleTest"
 			/>
-			<UButton :label="$t('common.save')" loading-auto @click="formRef?.submit()" />
+			<UButton label="Save" block color="primary" @click="formRef?.submit()" />
 		</template>
-	</ResponsiveModal>
+	</UModal>
 </template>
