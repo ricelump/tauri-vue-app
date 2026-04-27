@@ -3,7 +3,7 @@ const { currentBucket, hasBuckets } = useBuckets()
 </script>
 
 <template>
-	<PageWelcome v-if="!hasBuckets" />
+	<Welcome v-if="!hasBuckets" />
 	<div v-else>
 		<FileView :bucket="currentBucket" />
 	</div>

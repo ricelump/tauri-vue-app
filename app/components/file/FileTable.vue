@@ -31,13 +31,13 @@ const columns: TableColumn<BucketFile>[] = [
 					: table.getIsAllPageRowsSelected(),
 				'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
 					table.toggleAllPageRowsSelected(!!value),
-				'aria-label': 'Select all',
+				'aria-label': $t('file.selection.all'),
 			}),
 		cell: ({ row }) =>
 			h(UCheckbox, {
 				modelValue: row.getIsSelected(),
 				'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
-				'aria-label': 'Select row',
+				'aria-label': $t('file.selection.row'),
 			}),
 		enableSorting: false,
 		enableHiding: false,
@@ -51,17 +51,17 @@ const columns: TableColumn<BucketFile>[] = [
 	{
 		id: 'name',
 		accessorKey: 'name',
-		header: 'Name',
+		header: $t('file.name'),
 	},
 	{
 		id: 'size',
 		accessorKey: 'size',
-		header: 'Size',
+		header: $t('file.size'),
 	},
 	{
 		id: 'lastModified',
 		accessorKey: 'lastModified',
-		header: 'Modified',
+		header: $t('file.lastModified'),
 	},
 	{
 		id: 'actions',
@@ -79,18 +79,18 @@ function getContextMenuItems(row: TableRow<BucketFile>): DropdownMenuItem[][] {
 	return [
 		[
 			{
-				label: file.isDirectory ? 'Open' : 'Preview',
+				label: file.isDirectory ? $t('file.open') : $t('file.preview'),
 				icon: file.isDirectory ? 'i-ph-folder-open' : 'i-ph-eye',
 				onSelect: () => emit('select', file),
 			},
 			{
-				label: 'Copy URL',
+				label: $t('file.copyUrl.label'),
 				icon: 'i-ph-link-simple',
 				disabled: file.isDirectory,
 				onSelect: () => emit('copy-url', file),
 			},
 			{
-				label: 'Download',
+				label: $t('file.download.label'),
 				icon: 'i-ph-download-simple',
 				disabled: file.isDirectory,
 				onSelect: () => emit('download', file),
@@ -98,13 +98,13 @@ function getContextMenuItems(row: TableRow<BucketFile>): DropdownMenuItem[][] {
 		],
 		[
 			{
-				label: 'Rename',
+				label: $t('file.rename.label'),
 				icon: 'i-ph-pencil-simple',
 				disabled: file.isDirectory,
 				onSelect: () => emit('rename', file),
 			},
 			{
-				label: 'Delete',
+				label: $t('file.delete.label'),
 				icon: 'i-ph-trash',
 				color: 'error',
 				disabled: file.isDirectory,

@@ -42,6 +42,8 @@ const imageItems = computed<DropdownMenuItem[]>(() => [
 
 <template>
 	<UDropdownMenu :items="imageItems">
-		<UButton icon="i-ph-blueprint" color="neutral" variant="ghost" />
+		<UTooltip :text="$t('preset.label')">
+			<UButton icon="i-ph-blueprint" color="neutral" variant="ghost" />
+		</UTooltip>
 	</UDropdownMenu>
 </template>

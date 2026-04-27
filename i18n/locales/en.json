@@ -1,12 +1,69 @@
 {
 	"common": {
 		"openAppMenu": "Open Application Menu",
-		"save": "Save"
+		"save": "Save",
+		"cancel": "Cancel",
+		"confirm": "Confirm"
 	},
-	"pages": {
-		"welcome": {
-			"title": "Welcome to",
-			"description": "No buckets yet. Add your S3 bucket to get started."
+	"welcome": {
+		"title": "Welcome to",
+		"description": "No buckets yet. Add your S3 bucket to get started."
+	},
+	"file": {
+		"name": "Name",
+		"size": "Size",
+		"lastModified": "Last Modified",
+		"open": "Open",
+		"preview": "Preview",
+		"dropFilesHere": "Drop files here",
+		"navigation": {
+			"up": "Navigation Up",
+			"refresh": "Refresh"
+		},
+		"selection": {
+			"count": "{count} of {total} selected",
+			"row": "Select row",
+			"all": "Select all",
+			"clear": "Clear Selection"
+		},
+		"createFolder": {
+			"label": "Create Folder",
+			"title": "Create New Folder",
+			"description": "Enter the name of the folder you want to create.",
+			"placeholder": "Folder name",
+			"error": "Failed to create folder \"{name}\""
+		},
+		"rename": {
+			"label": "Rename",
+			"title": "Rename \"{name}\"",
+			"description": "Enter the new name.",
+			"error": "Failed to rename \"{name}\""
+		},
+		"delete": {
+			"label": "Delete",
+			"title": "Delete \"{name}\"",
+			"folderDescription": "All contents inside the folder will also be deleted.",
+			"fileDescription": "This action cannot be undone.",
+			"error": "Failed to delete \"{name}\""
+		},
+		"deleteAll": {
+			"label": "Delete All",
+			"title": "Delete {count} items?",
+			"folderDescription": "Folders and their contents will be permanently removed.",
+			"fileDescription": "This action cannot be undone.",
+			"error": "Batch deletion failed"
+		},
+		"upload": {
+			"label": "Upload",
+			"error": "{name} failed"
+		},
+		"download": {
+			"label": "Download",
+			"unavailable": "Download unavailable"
+		},
+		"copyUrl": {
+			"label": "Copy URL",
+			"unavailable": "URL unavailable"
 		}
 	},
 	"bucket": {
@@ -15,6 +72,7 @@
 		"edit": "Edit Bucket",
 		"select": "Select Bucket",
 		"manage": "Manage Buckets",
+		"failed": "Failed to save bucket",
 		"fields": {
 			"bucketName": "Bucket Name",
 			"displayName": "Display Name",
@@ -23,6 +81,16 @@
 			"accessKey": "Access Key ID",
 			"secretKey": "Secret Access Key",
 			"publicUrl": "Public URL"
+		},
+		"test": {
+			"label": "Test Connection",
+			"success": "Connection Successful",
+			"failed": "Connection Failed"
+		},
+		"delete": {
+			"label": "Delete Bucket",
+			"title": "Delete bucket \"{name}\" ?",
+			"description": "This action cannot be undone. The bucket configuration will be permanently removed."
 		}
 	},
 	"preset": {
@@ -30,20 +98,22 @@
 		"image": "Image Preset",
 		"imageNone": "No Image Preset",
 		"none": "None",
-		"enabled": "Enabled",
-		"disabled": "Disabled",
 		"add": "Add Preset",
 		"edit": "Edit Preset",
 		"manage": "Manage Presets",
 		"noImagePresets": "No image presets configured",
+		"failed": "Failed to save preset",
+		"delete": {
+			"label": "Delete Preset",
+			"title": "Delete preset \"{name}\" ?",
+			"description": "This action cannot be undone. The preset will be permanently removed."
+		},
 		"fields": {
-			"name": "Name",
-			"enabled": "Enable this preset",
+			"name": "Preset Name",
 			"format": "Format",
 			"quality": "Quality",
 			"maxWidth": "Max Width",
-			"maxHeight": "Max Height",
-			"fit": "Fit Mode"
+			"maxHeight": "Max Height"
 		},
 		"options": {
 			"compress": "Convert & compress",

@@ -35,25 +35,23 @@ const { copy } = useClipboard()
 
 async function handleCreateFolder() {
 	const folderName = await openInputDialog({
-		title: 'Create New Folder',
-		description: 'Enter the name of the folder you want to create.',
+		title: $t('file.createFolder.title'),
+		description: $t('file.createFolder.description'),
 		icon: 'i-ph-folder-simple-plus',
-		placeholder: 'Folder name',
+		placeholder: $t('file.createFolder.placeholder'),
 	})
 	if (!folderName || folderName.trim() === '') return
 
 	const success = await createFolder(folderName.trim(), currentPath.value)
-	if (success) {
-		toast.add({ title: `Folder "${folderName}" created`, color: 'success' })
-		await refresh()
-	} else toast.add({ title: `Failed to create folder "${folderName}"`, color: 'error' })
+	if (success) await refresh()
+	else toast.add({ title: $t('file.createFolder.error', { name: folderName }), color: 'error' })
 }
 
 async function handleRenameFile(file: BucketFile) {
 	const oldName = file.name
 	const newName = await openInputDialog({
-		title: `Rename "${oldName}"`,
-		description: 'Enter the new name.',
+		title: $t('file.rename.title', { name: oldName }),
+		description: $t('file.rename.description'),
 		icon: 'i-ph-pencil-simple',
 		placeholder: oldName,
 		defaultValue: oldName,
@@ -67,33 +65,34 @@ async function handleRenameFile(file: BucketFile) {
 
 	const success = await rename(oldKey, newKey)
 	if (success) {
-		toast.add({ title: `Renamed to "${newName}"`, color: 'success' })
+		toast.add({ title: $t('file.rename.success', { name: newName }), color: 'success' })
 		await refresh()
-	} else toast.add({ title: `Failed to rename "${oldName}"`, color: 'error' })
+	} else toast.add({ title: $t('file.rename.error', { name: oldName }), color: 'error' })
 }
 
 async function handleDeleteFile(file: BucketFile) {
 	const confirmed = await openConfirmDialog({
-		title: `Delete "${file.name}"?`,
-		description: `This action cannot be undone. ${file.isDirectory ? 'All contents inside the folder will also be deleted.' : ''}`,
+		title: $t('file.delete.title', { name: file.name }),
+		description: $t('file.delete.description', {
+			name: file.name,
+			description: file.isDirectory
+				? $t('file.delete.folderDescription')
+				: $t('file.delete.fileDescription'),
+		}),
 		destructive: true,
 	})
 	if (!confirmed) return
 
 	const success = await deleteFile(file.key)
 	if (success) {
-		toast.add({ title: `Deleted ${file.name}`, color: 'success' })
 		await refresh()
 		tableRef.value?.clearSelection()
-	} else toast.add({ title: `Failed to delete ${file.name}`, color: 'error' })
+	} else toast.add({ title: $t('file.delete.error', { name: file.name }), color: 'error' })
 }
 
 async function handleDeleteAll() {
 	const selectedIndices = Object.keys(rowSelection.value).filter((key) => rowSelection.value[key])
-	if (selectedIndices.length === 0) {
-		toast.add({ title: 'No files selected', color: 'warning' })
-		return
-	}
+	if (selectedIndices.length === 0) return
 
 	const selectedFiles: BucketFile[] = []
 	for (const index of selectedIndices) {
@@ -104,8 +103,13 @@ async function handleDeleteAll() {
 	if (selectedFiles.length === 0) return
 
 	const confirmed = await openConfirmDialog({
-		title: `Delete ${selectedFiles.length} item${selectedFiles.length > 1 ? 's' : ''}?`,
-		description: `This action cannot be undone. ${selectedFiles.some((f: BucketFile) => f.isDirectory) ? 'Folders and their contents will be permanently removed.' : ''}`,
+		title: $t('file.deleteAll.title', { count: selectedFiles.length }),
+		description: $t('file.deleteAll.description', {
+			count: selectedFiles.length,
+			description: selectedFiles.some((f: BucketFile) => f.isDirectory)
+				? $t('file.deleteAll.folderDescription')
+				: $t('file.deleteAll.fileDescription'),
+		}),
 		destructive: true,
 	})
 	if (!confirmed) return
@@ -115,7 +119,7 @@ async function handleDeleteAll() {
 	if (success) {
 		await refresh()
 		tableRef.value?.clearSelection()
-	} else toast.add({ title: 'Batch deletion failed', color: 'error' })
+	} else toast.add({ title: $t('file.deleteAll.error'), color: 'error' })
 }
 
 async function processFile(file: File): Promise<File> {
@@ -137,11 +141,11 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 
 	const files = Array.from(selectedFiles)
 
-	toast.add({
-		title: `Uploading ${files.length} file${files.length > 1 ? 's' : ''}`,
-		color: 'info',
-		icon: 'i-ph-upload-simple',
-	})
+	// toast.add({
+	// 	title: `Uploading ${files.length} file${files.length > 1 ? 's' : ''}`,
+	// 	color: 'info',
+	// 	icon: 'i-ph-upload-simple',
+	// })
 
 	const uploadedKeys: string[] = []
 
@@ -153,10 +157,14 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 
 			try {
 				const success = await upload(key, processedFile, processedFile.type)
-				if (!success) throw new Error('Upload failed')
+				if (!success) throw new Error()
 				uploadedKeys.push(key)
 			} catch {
-				toast.add({ title: `${filename} failed`, color: 'error', icon: 'i-ph-warning-circle' })
+				toast.add({
+					title: $t('file.upload.error', { name: filename }),
+					color: 'error',
+					icon: 'i-ph-warning-circle',
+				})
 			}
 		}),
 	)
@@ -174,7 +182,7 @@ async function handleFileUpload(selectedFiles: FileList | null) {
 function handleDownload(file: BucketFile) {
 	const url = getPublicUrl(file, props.bucket)
 	if (!url) {
-		toast.add({ title: 'Download unavailable', color: 'error' })
+		toast.add({ title: $t('file.download.unavailable'), color: 'error' })
 		return
 	}
 	downloadFile(url, file.name)
@@ -183,11 +191,10 @@ function handleDownload(file: BucketFile) {
 function handleCopyUrl(file: BucketFile) {
 	const url = getPublicUrl(file, props.bucket)
 	if (!url) {
-		toast.add({ title: 'URL unavailable', color: 'error' })
+		toast.add({ title: $t('file.copyUrl.unavailable'), color: 'error' })
 		return
 	}
 	copy(url)
-	toast.add({ title: 'URL copied', color: 'success' })
 }
 
 function onFileClick(file: BucketFile) {

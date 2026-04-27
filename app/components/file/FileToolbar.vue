@@ -22,7 +22,7 @@ const emit = defineEmits<{
 const bulkActions: DropdownMenuItem[][] = [
 	[
 		{
-			label: 'Delete All',
+			label: $t('file.deleteAll.label'),
 			icon: 'i-ph-trash',
 			color: 'error',
 			onSelect: () => emit('deleteAll'),
@@ -30,7 +30,7 @@ const bulkActions: DropdownMenuItem[][] = [
 	],
 	[
 		{
-			label: 'Clear Selection',
+			label: $t('file.selection.clear'),
 			icon: 'i-ph-selection-slash',
 			onSelect: () => emit('clearSelection'),
 		},
@@ -43,7 +43,7 @@ const bulkActions: DropdownMenuItem[][] = [
 		class="sticky top-(--ui-header-height) z-50 flex max-h-(--ui-header-height) items-center justify-between gap-2 overflow-x-auto border-y bg-default/75 px-2 py-1 backdrop-blur-sm"
 	>
 		<div class="flex items-center gap-3">
-			<UTooltip text="Navigate Up">
+			<UTooltip :text="$t('file.navigation.up')">
 				<UButton
 					icon="i-ph-arrow-left"
 					color="neutral"
@@ -66,21 +66,21 @@ const bulkActions: DropdownMenuItem[][] = [
 		<div class="flex items-center gap-0.5">
 			<UDropdownMenu v-if="hasSelection" :items="bulkActions">
 				<UButton
-					:label="`${selectionCount} of ${totalCount} selected`"
+					:label="$t('file.selection.count', { count: selectionCount, total: totalCount })"
 					color="primary"
 					variant="soft"
 					trailing-icon="i-ph-caret-down"
 				/>
 			</UDropdownMenu>
 			<UButton
-				label="Upload"
+				:label="$t('file.upload.label')"
 				icon="i-ph-upload-simple"
 				color="neutral"
 				variant="ghost"
 				@click="$emit('upload')"
 			/>
 			<PresetSelectDropdownMenu />
-			<UTooltip text="Create Folder">
+			<UTooltip :text="$t('file.createFolder.label')">
 				<UButton
 					icon="i-ph-folder-simple-plus"
 					color="neutral"
@@ -88,7 +88,7 @@ const bulkActions: DropdownMenuItem[][] = [
 					@click="$emit('createFolder')"
 				/>
 			</UTooltip>
-			<UTooltip text="Refresh">
+			<UTooltip :text="$t('file.navigation.refresh')">
 				<UButton
 					icon="i-ph-arrows-clockwise"
 					color="neutral"

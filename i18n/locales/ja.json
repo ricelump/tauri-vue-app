@@ -1,26 +1,123 @@
 {
 	"common": {
 		"openAppMenu": "アプリメニューを開く",
-		"save": "保存"
+		"save": "保存",
+		"cancel": "キャンセル",
+		"confirm": "確認"
 	},
-	"pages": {
-		"welcome": {
-			"title": "ようこそ",
-			"description": "バケットがありません。S3バケットを追加して開始してください。"
+	"welcome": {
+		"title": "ようこそ",
+		"description": "バケットがありません。S3バケットを追加して開始してください。"
+	},
+	"file": {
+		"name": "名前",
+		"size": "サイズ",
+		"lastModified": "更新日時",
+		"open": "開く",
+		"preview": "プレビュー",
+		"dropFilesHere": "ここにファイルをドラッグ＆ドロップ",
+		"navigation": {
+			"up": "上へ",
+			"refresh": "更新"
+		},
+		"selection": {
+			"count": "{total} 件中 {count} 件を選択",
+			"row": "この行を選択",
+			"all": "すべて選択",
+			"clear": "選択を解除"
+		},
+		"createFolder": {
+			"label": "フォルダを作成",
+			"title": "新しいフォルダを作成",
+			"description": "作成するフォルダの名前を入力してください。",
+			"placeholder": "フォルダ名",
+			"error": "フォルダ \"{name}\" の作成に失敗しました"
+		},
+		"rename": {
+			"label": "名前を変更",
+			"title": "\"{name}\" の名前を変更",
+			"description": "新しい名前を入力してください。",
+			"error": "\"{name}\" の名前変更に失敗しました"
+		},
+		"delete": {
+			"label": "削除",
+			"title": "\"{name}\" を削除",
+			"folderDescription": "フォルダ内のすべてのコンテンツも削除されます。",
+			"fileDescription": "この操作は元に戻せません。",
+			"error": "\"{name}\" の削除に失敗しました"
+		},
+		"deleteAll": {
+			"label": "すべて削除",
+			"title": "{count} 個の項目を削除しますか？",
+			"folderDescription": "フォルダとそのコンテンツは完全に削除されます。",
+			"fileDescription": "この操作は元に戻せません。",
+			"error": "一括削除に失敗しました"
+		},
+		"upload": {
+			"label": "アップロード",
+			"error": "{name} のアップロードに失敗しました"
+		},
+		"download": {
+			"label": "ダウンロード",
+			"unavailable": "ダウンロードできません"
+		},
+		"copyUrl": {
+			"label": "URLをコピー",
+			"unavailable": "URLは利用できません"
 		}
 	},
 	"bucket": {
 		"label": "バケット",
 		"add": "バケットを追加",
+		"edit": "バケットを編集",
 		"select": "バケットを選択",
 		"manage": "バケットを管理",
+		"failed": "バケットの保存に失敗しました",
 		"fields": {
 			"bucketName": "バケット名",
+			"displayName": "表示名",
 			"endpoint": "エンドポイント",
 			"region": "リージョン",
 			"accessKey": "アクセスキーID",
 			"secretKey": "シークレットアクセスキー",
 			"publicUrl": "パブリックURL"
+		},
+		"test": {
+			"label": "接続テスト",
+			"success": "接続成功",
+			"failed": "接続失敗"
+		},
+		"delete": {
+			"label": "バケットを削除",
+			"title": "バケット\"{name}\" を削除しますか？",
+			"description": "この操作は元に戻せません。バケット設定は完全に削除されます。"
+		}
+	},
+	"preset": {
+		"label": "プリセット",
+		"image": "画像プリセット",
+		"imageNone": "画像プリセットなし",
+		"none": "なし",
+		"add": "プリセットを追加",
+		"edit": "プリセットを編集",
+		"manage": "プリセットを管理",
+		"noImagePresets": "画像プリセットが設定されていません",
+		"failed": "プリセットの保存に失敗しました",
+		"delete": {
+			"label": "プリセットを削除",
+			"title": "プリセット\"{name}\" を削除しますか？",
+			"description": "この操作は元に戻せません。プリセットは完全に削除されます。"
+		},
+		"fields": {
+			"name": "プリセット名",
+			"format": "形式",
+			"quality": "品質",
+			"maxWidth": "最大幅",
+			"maxHeight": "最大高さ"
+		},
+		"options": {
+			"compress": "変換して圧縮",
+			"resize": "リサイズ"
 		}
 	},
 	"settings": {
@@ -29,6 +126,10 @@
 			"label": "一般",
 			"language": "言語",
 			"autoStart": "自動起動",
+			"autoCopy": {
+				"label": "自動的にURLをコピー",
+				"description": "単一ファイルのアップロード後にクリップボードにURLをコピー"
+			},
 			"closeToHide": {
 				"label": "閉じる時にトレイに最小化",
 				"description": "ウィンドウを閉じた後もアプリをバックグラウンドで実行する"
@@ -41,7 +142,7 @@
 		"appearance": {
 			"label": "外観",
 			"colorMode": {
-				"label": "色調",
+				"label": "テーマ",
 				"light": "明",
 				"dark": "暗",
 				"system": "システム設定に従う"

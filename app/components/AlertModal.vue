@@ -42,9 +42,15 @@ function handleConfirm() {
 		</template>
 
 		<template #footer>
-			<UButton label="Cancel" color="neutral" variant="subtle" block @click="emit('close')" />
 			<UButton
-				label="Confirm"
+				:label="$t('common.cancel')"
+				color="neutral"
+				variant="subtle"
+				block
+				@click="emit('close')"
+			/>
+			<UButton
+				:label="$t('common.confirm')"
 				block
 				:color="destructive ? 'error' : 'primary'"
 				@click="handleConfirm"

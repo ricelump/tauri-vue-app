@@ -17,8 +17,8 @@ function handleEditImage(preset: Preset<ImagePreset>) {
 
 async function handleDeleteImage(preset: Preset<ImagePreset>) {
 	const confirmed = await openConfirmDialog({
-		title: `Delete "${preset.name}"?`,
-		description: 'This action cannot be undone. The preset will be permanently removed.',
+		title: $t('preset.delete.title', { name: preset.name }),
+		description: $t('preset.delete.description'),
 		destructive: true,
 	})
 	if (!confirmed) return
@@ -37,18 +37,22 @@ async function handleDeleteImage(preset: Preset<ImagePreset>) {
 		<div class="flex flex-col gap-1">
 			<SettingsItem v-for="preset in imagePresets" :key="preset.id" :label="preset.name">
 				<div class="flex gap-0.5">
-					<UButton
-						icon="i-ph-pencil-simple"
-						color="neutral"
-						variant="ghost"
-						@click="handleEditImage(preset)"
-					/>
-					<UButton
-						icon="i-ph-trash"
-						color="error"
-						variant="ghost"
-						@click="handleDeleteImage(preset)"
-					/>
+					<UTooltip :text="$t('preset.edit')">
+						<UButton
+							icon="i-ph-pencil-simple"
+							color="neutral"
+							variant="ghost"
+							@click="handleEditImage(preset)"
+						/>
+					</UTooltip>
+					<UTooltip :text="$t('preset.delete')">
+						<UButton
+							icon="i-ph-trash"
+							color="error"
+							variant="ghost"
+							@click="handleDeleteImage(preset)"
+						/>
+					</UTooltip>
 				</div>
 			</SettingsItem>
 		</div>

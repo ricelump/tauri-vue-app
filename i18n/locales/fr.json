@@ -1,35 +1,135 @@
 {
 	"common": {
 		"openAppMenu": "Ouvrir le menu de l'application",
-		"save": "Enregistrer"
+		"save": "Enregistrer",
+		"cancel": "Annuler",
+		"confirm": "Confirmer"
 	},
-	"pages": {
-		"welcome": {
-			"title": "Bienvenue",
-			"description": "Aucun bucket pour le moment. Ajoutez votre bucket S3 pour commencer."
+	"welcome": {
+		"title": "Bienvenue",
+		"description": "Aucun bucket pour le moment. Ajoutez votre bucket S3 pour commencer."
+	},
+	"file": {
+		"name": "Nom",
+		"size": "Taille",
+		"lastModified": "Dernière modification",
+		"open": "Ouvrir",
+		"preview": "Aperçu",
+		"dropFilesHere": "Déposez les fichiers ici",
+		"navigation": {
+			"up": "Remonter",
+			"refresh": "Actualiser"
+		},
+		"selection": {
+			"count": "{count} sélectionné(s) sur {total}",
+			"row": "Sélectionner la ligne",
+			"all": "Tout sélectionner",
+			"clear": "Effacer la sélection"
+		},
+		"createFolder": {
+			"label": "Créer un dossier",
+			"title": "Créer un nouveau dossier",
+			"description": "Entrez le nom du dossier que vous souhaitez créer.",
+			"placeholder": "Nom du dossier",
+			"error": "Échec de la création du dossier \"{name}\""
+		},
+		"rename": {
+			"label": "Renommer",
+			"title": "Renommer \"{name}\"",
+			"description": "Entrez le nouveau nom.",
+			"error": "Échec du renommage de \"{name}\""
+		},
+		"delete": {
+			"label": "Supprimer",
+			"title": "Supprimer \"{name}\"",
+			"folderDescription": "Tous les contenus du dossier seront également supprimés.",
+			"fileDescription": "Cette action est irréversible.",
+			"error": "Échec de la suppression de \"{name}\""
+		},
+		"deleteAll": {
+			"label": "Tout supprimer",
+			"title": "Supprimer {count} éléments ?",
+			"folderDescription": "Les dossiers et leur contenu seront définitivement supprimés.",
+			"fileDescription": "Cette action est irréversible.",
+			"error": "Échec de la suppression groupée"
+		},
+		"upload": {
+			"label": "Téléverser",
+			"error": "Échec de {name}"
+		},
+		"download": {
+			"label": "Télécharger",
+			"unavailable": "Téléchargement indisponible"
+		},
+		"copyUrl": {
+			"label": "Copier l'URL",
+			"unavailable": "URL indisponible"
 		}
 	},
 	"bucket": {
 		"label": "Bucket",
 		"add": "Ajouter un bucket",
+		"edit": "Modifier le bucket",
 		"select": "Sélectionner un bucket",
 		"manage": "Gérer les buckets",
+		"failed": "Échec de l'enregistrement du bucket",
 		"fields": {
 			"bucketName": "Nom du bucket",
+			"displayName": "Nom d'affichage",
 			"endpoint": "Point de terminaison",
 			"region": "Région",
 			"accessKey": "ID de clé d'accès",
 			"secretKey": "Clé d'accès secrète",
 			"publicUrl": "URL publique"
+		},
+		"test": {
+			"label": "Tester la connexion",
+			"success": "Connexion réussie",
+			"failed": "Connexion échouée"
+		},
+		"delete": {
+			"label": "Supprimer le bucket",
+			"title": "Supprimer le bucket \"{name}\" ?",
+			"description": "Cette action est irréversible. La configuration du bucket sera définitivement supprimée."
 		}
 	},
-
+	"preset": {
+		"label": "Préréglages",
+		"image": "Préréglage image",
+		"imageNone": "Aucun préréglage image",
+		"none": "Aucun",
+		"add": "Ajouter un préréglage",
+		"edit": "Modifier le préréglage",
+		"manage": "Gérer les préréglages",
+		"noImagePresets": "Aucun préréglage image configuré",
+		"failed": "Échec de l'enregistrement du préréglage",
+		"delete": {
+			"label": "Supprimer le préréglage",
+			"title": "Supprimer le préréglage \"{name}\" ?",
+			"description": "Cette action est irréversible. Le préréglage sera définitivement supprimé."
+		},
+		"fields": {
+			"name": "Nom du préréglage",
+			"format": "Format",
+			"quality": "Qualité",
+			"maxWidth": "Largeur max",
+			"maxHeight": "Hauteur max"
+		},
+		"options": {
+			"compress": "Convertir et compresser",
+			"resize": "Redimensionner"
+		}
+	},
 	"settings": {
 		"label": "Paramètres",
 		"general": {
 			"label": "Général",
 			"language": "Langue",
 			"autoStart": "Démarrage automatique",
+			"autoCopy": {
+				"label": "Copie automatique de l'URL",
+				"description": "Copier l'URL dans le presse-papier après un téléversement de fichier unique"
+			},
 			"closeToHide": {
 				"label": "Réduire dans le bac à la fermeture",
 				"description": "Maintenir l'application en arrière-plan lors de la fermeture de la fenêtre"
@@ -61,6 +161,7 @@
 			"label": "Raccourcis",
 			"toggleWindow": "Afficher/masquer la fenêtre",
 			"pressKeys": "Appuyez sur les touches...",
+			"notSet": "Non attribué",
 			"unavailable": "Aucun raccourci disponible"
 		},
 		"about": {

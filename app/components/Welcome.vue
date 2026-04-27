@@ -13,16 +13,16 @@ const modal = overlay.create(LazyBucketConfigFormModal)
 			<AppIconLinear class="size-16 text-primary" />
 			<h1 class="mt-6 flex flex-col text-2xl sm:text-3xl">
 				<span class="text-toned">
-					{{ $t('pages.welcome.title') }}
+					{{ $t('welcome.title') }}
 				</span>
 				<span class="font-bold">
 					{{ appConfig.app.name }}
 				</span>
 			</h1>
 			<p class="my-4 max-w-xl text-sm text-muted sm:text-base">
-				{{ $t('pages.welcome.description') }}
+				{{ $t('welcome.description') }}
 			</p>
-			<UButton :label="$t('bucket.add')" icon="i-ph-plus" @click="modal.open" />
+			<UButton :label="$t('bucket.add')" icon="i-ph-plus" @click="modal.open()" />
 		</div>
 	</div>
 </template>

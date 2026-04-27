@@ -1,26 +1,123 @@
 {
 	"common": {
 		"openAppMenu": "Abrir menú de la aplicación",
-		"save": "Guardar"
+		"save": "Guardar",
+		"cancel": "Cancelar",
+		"confirm": "Confirmar"
 	},
-	"pages": {
-		"welcome": {
-			"title": "Bienvenido",
-			"description": "Aún no hay buckets. Agrega tu bucket de S3 para comenzar."
+	"welcome": {
+		"title": "Bienvenido",
+		"description": "Aún no hay buckets. Agrega tu bucket de S3 para comenzar."
+	},
+	"file": {
+		"name": "Nombre",
+		"size": "Tamaño",
+		"lastModified": "Última modificación",
+		"open": "Abrir",
+		"preview": "Vista previa",
+		"dropFilesHere": "Arrastra los archivos aquí",
+		"navigation": {
+			"up": "Subir",
+			"refresh": "Actualizar"
+		},
+		"selection": {
+			"count": "{count} de {total} seleccionados",
+			"row": "Seleccionar fila",
+			"all": "Seleccionar todo",
+			"clear": "Limpiar selección"
+		},
+		"createFolder": {
+			"label": "Crear carpeta",
+			"title": "Crear nueva carpeta",
+			"description": "Ingresa el nombre de la carpeta que deseas crear.",
+			"placeholder": "Nombre de la carpeta",
+			"error": "Error al crear la carpeta \"{name}\""
+		},
+		"rename": {
+			"label": "Renombrar",
+			"title": "Renombrar \"{name}\"",
+			"description": "Ingresa el nuevo nombre.",
+			"error": "Error al renombrar \"{name}\""
+		},
+		"delete": {
+			"label": "Eliminar",
+			"title": "Eliminar \"{name}\"",
+			"folderDescription": "Todo el contenido dentro de la carpeta también se eliminará.",
+			"fileDescription": "Esta acción no se puede deshacer.",
+			"error": "Error al eliminar \"{name}\""
+		},
+		"deleteAll": {
+			"label": "Eliminar todo",
+			"title": "¿Eliminar {count} elementos?",
+			"folderDescription": "Las carpetas y su contenido se eliminarán permanentemente.",
+			"fileDescription": "Esta acción no se puede deshacer.",
+			"error": "Error en la eliminación por lotes"
+		},
+		"upload": {
+			"label": "Subir",
+			"error": "Error en {name}"
+		},
+		"download": {
+			"label": "Descargar",
+			"unavailable": "Descarga no disponible"
+		},
+		"copyUrl": {
+			"label": "Copiar URL",
+			"unavailable": "URL no disponible"
 		}
 	},
 	"bucket": {
 		"label": "Bucket",
 		"add": "Agregar bucket",
+		"edit": "Editar bucket",
 		"select": "Seleccionar bucket",
 		"manage": "Administrar buckets",
+		"failed": "Error al guardar el bucket",
 		"fields": {
 			"bucketName": "Nombre del bucket",
+			"displayName": "Nombre para mostrar",
 			"endpoint": "Endpoint",
 			"region": "Región",
 			"accessKey": "ID de clave de acceso",
 			"secretKey": "Clave de acceso secreta",
 			"publicUrl": "URL pública"
+		},
+		"test": {
+			"label": "Probar conexión",
+			"success": "Conexión exitosa",
+			"failed": "Conexión fallida"
+		},
+		"delete": {
+			"label": "Eliminar bucket",
+			"title": "¿Eliminar el bucket \"{name}\"?",
+			"description": "Esta acción no se puede deshacer. La configuración del bucket se eliminará permanentemente."
+		}
+	},
+	"preset": {
+		"label": "Ajustes predefinidos",
+		"image": "Ajuste predefinido de imagen",
+		"imageNone": "Sin ajuste predefinido de imagen",
+		"none": "Ninguno",
+		"add": "Agregar ajuste predefinido",
+		"edit": "Editar ajuste predefinido",
+		"manage": "Administrar ajustes predefinidos",
+		"noImagePresets": "No hay ajustes predefinidos de imagen configurados",
+		"failed": "Error al guardar el ajuste predefinido",
+		"delete": {
+			"label": "Eliminar ajuste predefinido",
+			"title": "¿Eliminar el ajuste predefinido \"{name}\"?",
+			"description": "Esta acción no se puede deshacer. El ajuste predefinido se eliminará permanentemente."
+		},
+		"fields": {
+			"name": "Nombre del ajuste predefinido",
+			"format": "Formato",
+			"quality": "Calidad",
+			"maxWidth": "Ancho máximo",
+			"maxHeight": "Alto máximo"
+		},
+		"options": {
+			"compress": "Convertir y comprimir",
+			"resize": "Redimensionar"
 		}
 	},
 	"settings": {
@@ -29,6 +126,10 @@
 			"label": "General",
 			"language": "Idioma",
 			"autoStart": "Iniciar con el sistema",
+			"autoCopy": {
+				"label": "Copiar URL automáticamente",
+				"description": "Copiar la URL al portapapeles después de subir un solo archivo"
+			},
 			"closeToHide": {
 				"label": "Minimizar a la bandeja al cerrar",
 				"description": "Mantener la aplicación ejecutándose en segundo plano al cerrar la ventana"

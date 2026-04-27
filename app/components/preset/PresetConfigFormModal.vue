@@ -54,20 +54,13 @@ async function onSubmit() {
 			}
 		}
 
-		if (isEdit.value && props.preset) {
-			if (isImage.value)
-				updateImagePreset(props.preset.id, { name: state.name, config: config as ImagePreset })
-
-			toast.add({ title: 'Preset updated', color: 'success' })
-		} else {
-			if (isImage.value) addImagePreset(state.name, config as ImagePreset)
-
-			toast.add({ title: 'Preset created', color: 'success' })
-		}
+		if (isEdit.value && props.preset)
+			updateImagePreset(props.preset.id, { name: state.name, config: config as ImagePreset })
+		else addImagePreset(state.name, config as ImagePreset)
 
 		emit('close')
 	} catch {
-		toast.add({ title: 'Failed to save preset', color: 'error' })
+		toast.add({ title: $t('preset.failed'), color: 'error' })
 	}
 }
 </script>
@@ -116,8 +109,14 @@ async function onSubmit() {
 		</template>
 
 		<template #footer>
-			<UButton label="Cancel" color="neutral" variant="subtle" block @click="emit('close')" />
-			<UButton label="Save" block color="primary" @click="formRef?.submit()" />
+			<UButton
+				:label="$t('common.cancel')"
+				color="neutral"
+				variant="subtle"
+				block
+				@click="emit('close')"
+			/>
+			<UButton :label="$t('common.save')" block color="primary" @click="formRef?.submit()" />
 		</template>
 	</UModal>
 </template>

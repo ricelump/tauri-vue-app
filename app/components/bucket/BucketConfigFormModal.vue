@@ -30,7 +30,7 @@ const { addBucket, updateBucket } = useBuckets()
 async function handleTest() {
 	const result = await test(state as Bucket)
 	toast.add({
-		title: result ? 'Connection Successful' : 'Connection Failed',
+		title: result ? $t('bucket.test.success') : $t('bucket.test.failed'),
 		color: result ? 'success' : 'error',
 	})
 }
@@ -41,7 +41,7 @@ async function onSubmit(event?: FormSubmitEvent<Bucket>) {
 		const result = await test(event.data)
 		if (!result) {
 			toast.add({
-				title: 'Connection Failed',
+				title: $t('bucket.test.failed'),
 				color: 'error',
 			})
 			return
@@ -49,22 +49,14 @@ async function onSubmit(event?: FormSubmitEvent<Bucket>) {
 
 		if (isEdit.value && props.bucket) {
 			await updateBucket(props.bucket.id!, event.data)
-			toast.add({
-				title: 'Bucket updated successfully',
-				color: 'success',
-			})
 		} else {
 			await addBucket(event.data)
-			toast.add({
-				title: 'Bucket added successfully',
-				color: 'success',
-			})
 		}
 
 		emit('close')
 	} catch {
 		toast.add({
-			title: isEdit.value ? 'Failed to update bucket' : 'Failed to save bucket',
+			title: $t('bucket.failed'),
 			color: 'error',
 		})
 	}
@@ -104,15 +96,21 @@ async function onSubmit(event?: FormSubmitEvent<Bucket>) {
 		</template>
 
 		<template #footer>
-			<UButton label="Cancel" color="neutral" variant="subtle" block @click="emit('close')" />
 			<UButton
-				:label="$t('common.test')"
+				:label="$t('common.cancel')"
+				color="neutral"
+				variant="subtle"
+				block
+				@click="emit('close')"
+			/>
+			<UButton
+				:label="$t('bucket.test.label')"
 				color="neutral"
 				variant="subtle"
 				block
 				@click="handleTest"
 			/>
-			<UButton label="Save" block color="primary" @click="formRef?.submit()" />
+			<UButton :label="$t('common.save')" block color="primary" @click="formRef?.submit()" />
 		</template>
 	</UModal>
 </template>

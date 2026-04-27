@@ -1,26 +1,123 @@
 {
 	"common": {
 		"openAppMenu": "打开应用菜单",
-		"save": "保存"
+		"save": "保存",
+		"cancel": "取消",
+		"confirm": "确认"
 	},
-	"pages": {
-		"welcome": {
-			"title": "欢迎使用",
-			"description": "暂无存储桶，请添加您的 S3 存储桶以开始使用。"
+	"welcome": {
+		"title": "欢迎使用",
+		"description": "暂无存储桶，请添加您的 S3 存储桶以开始使用。"
+	},
+	"file": {
+		"name": "名称",
+		"size": "大小",
+		"lastModified": "修改时间",
+		"open": "打开",
+		"preview": "预览",
+		"dropFilesHere": "将文件拖拽至此处",
+		"navigation": {
+			"up": "导航至上级",
+			"refresh": "刷新"
+		},
+		"selection": {
+			"count": "已选择 {count} 项 / 共 {total} 项",
+			"row": "选择此行",
+			"all": "全选",
+			"clear": "清除选择"
+		},
+		"createFolder": {
+			"label": "新建文件夹",
+			"title": "创建新文件夹",
+			"description": "请输入要创建的文件夹名称。",
+			"placeholder": "文件夹名称",
+			"error": "创建文件夹 \"{name}\" 失败"
+		},
+		"rename": {
+			"label": "重命名",
+			"title": "重命名 \"{name}\"",
+			"description": "请输入新名称。",
+			"error": "重命名 \"{name}\" 失败"
+		},
+		"delete": {
+			"label": "删除",
+			"title": "删除 \"{name}\"",
+			"folderDescription": "文件夹内的所有内容也将被删除。",
+			"fileDescription": "此操作无法撤销。",
+			"error": "删除 \"{name}\" 失败"
+		},
+		"deleteAll": {
+			"label": "全部删除",
+			"title": "删除 {count} 个项目？",
+			"folderDescription": "文件夹及其内容将被永久移除。",
+			"fileDescription": "此操作无法撤销。",
+			"error": "批量删除失败"
+		},
+		"upload": {
+			"label": "上传",
+			"error": "{name} 上传失败"
+		},
+		"download": {
+			"label": "下载",
+			"unavailable": "下载不可用"
+		},
+		"copyUrl": {
+			"label": "复制链接",
+			"unavailable": "链接不可用"
 		}
 	},
 	"bucket": {
 		"label": "存储桶",
 		"add": "添加存储桶",
+		"edit": "编辑存储桶",
 		"select": "选择存储桶",
 		"manage": "管理存储桶",
+		"failed": "保存存储桶失败",
 		"fields": {
 			"bucketName": "存储桶名称",
+			"displayName": "显示名称",
 			"endpoint": "服务端点地址",
 			"region": "区域",
 			"accessKey": "访问密钥 ID",
 			"secretKey": "访问密钥 Secret",
 			"publicUrl": "公开访问地址"
+		},
+		"test": {
+			"label": "测试连接",
+			"success": "连接成功",
+			"failed": "连接失败"
+		},
+		"delete": {
+			"label": "删除存储桶",
+			"title": "删除存储桶 \"{name}\" ？",
+			"description": "此操作无法撤销。存储桶配置将被永久移除。"
+		}
+	},
+	"preset": {
+		"label": "预设",
+		"image": "图片预设",
+		"imageNone": "无图片预设",
+		"none": "无预设",
+		"add": "添加预设",
+		"edit": "编辑预设",
+		"manage": "管理预设",
+		"noImagePresets": "未配置图片预设",
+		"failed": "保存预设失败",
+		"delete": {
+			"label": "删除预设",
+			"title": "删除预设 \"{name}\" ？",
+			"description": "此操作无法撤销。预设将被永久移除。"
+		},
+		"fields": {
+			"name": "预设名称",
+			"format": "格式",
+			"quality": "品质",
+			"maxWidth": "最大宽度",
+			"maxHeight": "最大高度"
+		},
+		"options": {
+			"compress": "转换并压缩",
+			"resize": "调整尺寸"
 		}
 	},
 	"settings": {
@@ -29,6 +126,10 @@
 			"label": "通用",
 			"language": "语言",
 			"autoStart": "开机自启",
+			"autoCopy": {
+				"label": "自动复制链接",
+				"description": "单文件上传后自动复制链接到剪贴板"
+			},
 			"closeToHide": {
 				"label": "关闭时最小化到系统托盘",
 				"description": "关闭窗口后应用继续在后台运行"

@@ -53,7 +53,7 @@ onUnmounted(() => {
 		>
 			<div class="flex flex-col items-center gap-2">
 				<UIcon name="i-ph-upload-simple" class="size-12" />
-				<p class="text-lg font-medium">Drop files here</p>
+				<p class="text-lg font-medium">{{ $t('file.dropFilesHere') }}</p>
 			</div>
 		</div>
 	</Teleport>
