@@ -73,12 +73,9 @@ async function handleRenameFile(file: BucketFile) {
 async function handleDeleteFile(file: BucketFile) {
 	const confirmed = await openConfirmDialog({
 		title: $t('file.delete.title', { name: file.name }),
-		description: $t('file.delete.description', {
-			name: file.name,
-			description: file.isDirectory
-				? $t('file.delete.folderDescription')
-				: $t('file.delete.fileDescription'),
-		}),
+		description: file.isDirectory
+			? $t('file.delete.folderDescription')
+			: $t('file.delete.fileDescription'),
 		destructive: true,
 	})
 	if (!confirmed) return
@@ -104,12 +101,9 @@ async function handleDeleteAll() {
 
 	const confirmed = await openConfirmDialog({
 		title: $t('file.deleteAll.title', { count: selectedFiles.length }),
-		description: $t('file.deleteAll.description', {
-			count: selectedFiles.length,
-			description: selectedFiles.some((f: BucketFile) => f.isDirectory)
-				? $t('file.deleteAll.folderDescription')
-				: $t('file.deleteAll.fileDescription'),
-		}),
+		description: selectedFiles.some((f: BucketFile) => f.isDirectory)
+			? $t('file.deleteAll.folderDescription')
+			: $t('file.deleteAll.fileDescription'),
 		destructive: true,
 	})
 	if (!confirmed) return

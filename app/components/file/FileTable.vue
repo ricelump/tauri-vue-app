@@ -76,42 +76,53 @@ const columns: TableColumn<BucketFile>[] = [
 function getContextMenuItems(row: TableRow<BucketFile>): DropdownMenuItem[][] {
 	const file = row.original
 
-	return [
-		[
-			{
-				label: file.isDirectory ? $t('file.open') : $t('file.preview'),
-				icon: file.isDirectory ? 'i-ph-folder-open' : 'i-ph-eye',
-				onSelect: () => emit('select', file),
-			},
+	const result: DropdownMenuItem[][] = []
+
+	const group: DropdownMenuItem[] = []
+
+	// TODO: File preview
+	if (file.isDirectory) {
+		group.push({
+			label: file.isDirectory ? $t('file.open') : $t('file.preview'),
+			icon: file.isDirectory ? 'i-ph-folder-open' : 'i-ph-eye',
+			onSelect: () => emit('select', file),
+		})
+	}
+
+	if (!file.isDirectory) {
+		group.push(
 			{
 				label: $t('file.copyUrl.label'),
 				icon: 'i-ph-link-simple',
-				disabled: file.isDirectory,
 				onSelect: () => emit('copy-url', file),
 			},
 			{
 				label: $t('file.download.label'),
 				icon: 'i-ph-download-simple',
-				disabled: file.isDirectory,
 				onSelect: () => emit('download', file),
 			},
-		],
-		[
+		)
+	}
+
+	if (group.length > 0) result.push(group)
+
+	if (!file.isDirectory) {
+		result.push([
 			{
 				label: $t('file.rename.label'),
 				icon: 'i-ph-pencil-simple',
-				disabled: file.isDirectory,
 				onSelect: () => emit('rename', file),
 			},
 			{
 				label: $t('file.delete.label'),
 				icon: 'i-ph-trash',
 				color: 'error',
-				disabled: file.isDirectory,
 				onSelect: () => emit('delete', file),
 			},
-		],
-	]
+		])
+	}
+
+	return result
 }
 
 function onContextmenu(_e: Event, row: TableRow<BucketFile>) {
@@ -143,10 +154,7 @@ defineExpose({
 		>
 			<template #name-cell="{ row }">
 				<div class="flex items-center gap-2 select-text">
-					<UIcon
-						:name="row.original.isDirectory ? 'i-ph-folder-simple' : 'i-ph-file'"
-						class="size-5"
-					/>
+					<UIcon :name="getFileIcon(row.original)" class="size-5" />
 					<span class="font-medium text-highlighted">{{ row.original.name }}</span>
 				</div>
 			</template>

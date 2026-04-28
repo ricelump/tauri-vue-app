@@ -45,7 +45,7 @@ async function handleDeleteImage(preset: Preset<ImagePreset>) {
 							@click="handleEditImage(preset)"
 						/>
 					</UTooltip>
-					<UTooltip :text="$t('preset.delete')">
+					<UTooltip :text="$t('preset.delete.label')">
 						<UButton
 							icon="i-ph-trash"
 							color="error"

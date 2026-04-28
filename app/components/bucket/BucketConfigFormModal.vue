@@ -47,11 +47,8 @@ async function onSubmit(event?: FormSubmitEvent<Bucket>) {
 			return
 		}
 
-		if (isEdit.value && props.bucket) {
-			await updateBucket(props.bucket.id!, event.data)
-		} else {
-			await addBucket(event.data)
-		}
+		if (isEdit.value && props.bucket) await updateBucket(props.bucket.id!, event.data)
+		else await addBucket(event.data)
 
 		emit('close')
 	} catch {
