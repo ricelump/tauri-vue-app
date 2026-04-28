@@ -1,3 +1,6 @@
+import wasm from 'vite-plugin-wasm'
+import topLevelAwait from 'vite-plugin-top-level-await'
+
 export default defineNuxtConfig({
 	modules: ['@vueuse/nuxt', '@nuxt/ui', '@nuxtjs/i18n'],
 	app: {
@@ -70,14 +73,33 @@ export default defineNuxtConfig({
 				ignored: ['**/src-tauri/**'],
 			},
 		},
+		plugins: [wasm(), topLevelAwait()],
+		build: {
+			rollupOptions: {
+				output: {
+					manualChunks: {
+						jsquash: [
+							'@jsquash/jpeg',
+							'@jsquash/png',
+							'@jsquash/webp',
+							'@jsquash/avif',
+							'@jsquash/resize',
+						],
+					},
+				},
+			},
+		},
 		optimizeDeps: {
 			exclude: [
+				'@jsquash/avif',
 				'@jsquash/jpeg',
 				'@jsquash/png',
 				'@jsquash/webp',
-				'@jsquash/avif',
 				'@jsquash/resize',
 			],
+		},
+		worker: {
+			format: 'es',
 		},
 	},
 	devServer: {

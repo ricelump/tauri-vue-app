@@ -6,8 +6,11 @@
 	"scripts": {
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
+		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"tauri": "tauri",
+		"tauri:build": "tauri build --no-bundle",
+		"tauri:bundle:ms": "tauri bundle --config src-tauri/tauri.microsoftstore.conf.json",
 		"lint": "oxlint",
 		"lint:fix": "oxlint --fix",
 		"fmt": "oxfmt",
@@ -48,6 +51,8 @@
 		"oxfmt": "^0.38.0",
 		"oxlint": "^1.53.0",
 		"typescript": "~5.6.2",
+		"vite-plugin-top-level-await": "^1.6.0",
+		"vite-plugin-wasm": "^3.6.0",
 		"vue-tsc": "^2.1.10"
 	}
 }

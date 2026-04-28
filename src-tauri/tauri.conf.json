@@ -6,7 +6,7 @@
 	"build": {
 		"beforeDevCommand": "pnpm dev",
 		"devUrl": "http://localhost:1420",
-		"beforeBuildCommand": "pnpm build",
+		"beforeBuildCommand": "pnpm generate",
 		"frontendDist": "../dist"
 	},
 	"app": {
@@ -23,7 +23,15 @@
 			}
 		],
 		"security": {
-			"csp": null
+			"csp": {
+				"default-src": "'self'",
+				"connect-src": "ipc: http://ipc.localhost http://tauri.localhost https://tauri.localhost https:",
+				"script-src": "'strict-dynamic' 'unsafe-eval' 'wasm-unsafe-eval' 'unsafe-inline' https:",
+				"img-src": "'self' blob: data: http://tauri.localhost https://tauri.localhost https:",
+				"style-src": "'self' 'unsafe-inline'",
+				"font-src": "'self'",
+				"worker-src": "'self' blob:"
+			}
 		},
 		"withGlobalTauri": true
 	},
@@ -36,6 +44,7 @@
 			"icons/128x128@2x.png",
 			"icons/icon.icns",
 			"icons/icon.ico"
-		]
+		],
+		"publisher": "PRE"
 	}
 }
