@@ -9,4 +9,5 @@ useSeoMeta({
 <template>
 	<Hero />
 	<Screenshot />
+	<Features />
 </template>

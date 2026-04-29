@@ -5,7 +5,7 @@ const appConfig = useAppConfig()
 <template>
 	<header class="padding border-b border-default bg-muted/50 dark:bg-muted/10">
 		<div class="flex items-center justify-between">
-			<div class="flex items-center gap-1 text-toned">
+			<div class="flex items-center gap-2 text-toned">
 				<span class="font-medium">{{ appConfig.app.name }}</span>
 				<UBadge label="Beta" color="neutral" variant="subtle" size="sm" />
 			</div>

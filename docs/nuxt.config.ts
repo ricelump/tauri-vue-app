@@ -6,4 +6,17 @@ export default defineNuxtConfig({
 	nitro: {
 		preset: 'static',
 	},
+	icon: {
+		mode: 'svg',
+		customCollections: [
+			{
+				prefix: 'logo',
+				dir: './app/assets/logos',
+			},
+			{
+				prefix: 'icon',
+				dir: './app/assets/icons',
+			},
+		],
+	},
 })

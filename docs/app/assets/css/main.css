@@ -22,8 +22,15 @@
 		background: var(--border-color-default);
 		border-radius: 5px;
 	}
+	* {
+		@apply border-default;
+	}
 }
 
 @utility padding {
-	@apply px-4 py-5 sm:px-5 sm:py-6;
+	@apply px-5 py-6;
+}
+
+@utility dash-bar {
+	@apply flex w-full bg-[repeating-linear-gradient(-45deg,var(--background-color-elevated)_0px,var(--background-color-elevated)_6px,transparent_2px,transparent_12px)] bg-repeat py-5 sm:py-6;
 }
