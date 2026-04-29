@@ -1,14 +1,16 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
+@theme {
+	--font-sans: 'Inter', sans-serif;
+	--font-serif: 'Instrument Serif', serif;
+}
+
 @layer base {
 	* {
 		@apply border-default;
 		scrollbar-width: thin;
 		scrollbar-color: var(--border-color-default) transparent;
-	}
-	html {
-		@apply no-scrollbar;
 	}
 	::-webkit-scrollbar {
 		width: 5px;
@@ -20,4 +22,8 @@
 		background: var(--border-color-default);
 		border-radius: 5px;
 	}
+}
+
+@utility padding {
+	@apply px-4 py-5 sm:px-5 sm:py-6;
 }

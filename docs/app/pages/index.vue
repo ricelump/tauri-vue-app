@@ -1,3 +1,12 @@
+<script setup lang="ts">
+const appConfig = useAppConfig()
+
+useSeoMeta({
+	titleTemplate: '%s',
+})
+</script>
+
 <template>
-	<UButton label="Button" />
+	<Hero />
+	<Screenshot />
 </template>

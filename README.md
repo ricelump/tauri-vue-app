@@ -1,6 +1,10 @@
 # Prebucket
 
-Modern S3-compatible storage client built with Nuxt and Tauri. (WIP)
+Manage multiple S3-compatible buckets from a modern desktop app. Upload files, apply image presets, and copy public URLs in one seamless flow.
+
+[Download for Windows](https://github.com/ricelump/prebucket/releases)
+
+![Prebucket screenshot](docs/app/assets/screenshot.webp)
 
 ## Features
 
