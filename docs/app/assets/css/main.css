@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@layer base {
+	* {
+		@apply border-default;
+		scrollbar-width: thin;
+		scrollbar-color: var(--border-color-default) transparent;
+	}
+	html {
+		@apply no-scrollbar;
+	}
+	::-webkit-scrollbar {
+		width: 5px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		background: var(--border-color-default);
+		border-radius: 5px;
+	}
+}

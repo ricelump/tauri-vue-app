@@ -1,0 +1,20 @@
+packages:
+  - '.'
+  - './docs'
+
+catalog:
+  nuxt: ^4.4.2
+  '@nuxt/ui': ^4.6.0
+  '@nuxtjs/i18n': ^10.2.4
+  vue: ^3.5.13
+  vue-router: ^4.6.4
+  tailwindcss: ^4.2.1
+
+overrides:
+  nuxt: 'catalog:'
+  '@nuxt/ui': 'catalog:'
+  vue: 'catalog:'
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - 'esbuild'
