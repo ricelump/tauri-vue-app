@@ -6,6 +6,10 @@ export default defineNuxtConfig({
 	nitro: {
 		preset: 'static',
 	},
+	ui: {
+		fonts: false,
+		prose: true,
+	},
 	icon: {
 		mode: 'svg',
 		customCollections: [

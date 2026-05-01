@@ -8,6 +8,9 @@ const appConfig = useAppConfig()
 			<p class="flex items-center gap-1 text-xs font-medium text-muted">
 				{{ `© ${new Date().getFullYear()} ${appConfig.app.name}` }}
 			</p>
+			<UButton to="/privacy-policy" variant="link" color="neutral" size="xs">
+				Privacy Policy
+			</UButton>
 		</div>
 	</footer>
 </template>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const appConfig = useAppConfig()
-
 useSeoMeta({
 	titleTemplate: '%s',
 })
@@ -10,4 +8,5 @@ useSeoMeta({
 	<Hero />
 	<Screenshot />
 	<Features />
+	<CallToAction />
 </template>
